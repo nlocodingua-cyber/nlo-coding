@@ -207,6 +207,7 @@
   "leadBlock": {
     "telegram": {
       "title": "Telegram",
+      "badge": "Fastest",
       "desc": "Direct conversation with Oleksii. The fastest path.",
       "cta": "Message"
     },
