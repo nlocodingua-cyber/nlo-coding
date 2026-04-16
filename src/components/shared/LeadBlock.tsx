@@ -66,21 +66,22 @@ export function LeadBlock({ campaign = "main", className }: LeadBlockProps) {
       {cards.map((card) => {
         const Icon = card.icon;
         const content = (
-          <Spotlight
-            className={cn(
-              "relative group rounded-2xl h-full p-8 bg-white/[0.02] border border-white/10 backdrop-blur-sm transition-all duration-300",
-              "hover:border-white/25 hover:-translate-y-1",
-              card.featured && "border-beam"
-            )}
-          >
+          <div className="relative h-full">
             {card.featured && (
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
                 <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-[11px] font-display font-semibold tracking-wide shadow-[0_0_24px_rgba(0,240,255,0.4)]">
                   <span className="size-1.5 rounded-full bg-primary-foreground animate-pulse" />
                   {t(`${card.key}.badge`)}
                 </div>
               </div>
             )}
+            <Spotlight
+              className={cn(
+                "group rounded-2xl h-full p-8 bg-white/[0.02] border border-white/10 backdrop-blur-sm transition-all duration-300",
+                "hover:border-white/25 hover:-translate-y-1",
+                card.featured && "border-beam"
+              )}
+            >
             <div className="relative flex flex-col h-full">
               <div className={cn("inline-flex items-center justify-center size-12 rounded-xl mb-6 border", card.iconBg)}>
                 <Icon className="size-5" />
@@ -97,6 +98,7 @@ export function LeadBlock({ campaign = "main", className }: LeadBlockProps) {
               </div>
             </div>
           </Spotlight>
+          </div>
         );
 
         return (
