@@ -55,7 +55,7 @@ export function Hero() {
 
         {/* Display headline — word-by-word blur reveal */}
         <h1
-          className="font-display font-bold text-balance mx-auto"
+          className="font-display font-bold text-balance mx-auto block"
           style={{
             fontSize: "clamp(2.75rem, 8vw, 6.5rem)",
             lineHeight: 0.95,
@@ -65,17 +65,15 @@ export function Hero() {
         >
           <AnimatedText
             text={t("titleLine1")}
-            as="span"
             className="display-title"
-            stagger={0.07}
+            stagger={0.08}
           />
           <br />
           <AnimatedText
             text={t("titleLine2")}
-            as="span"
             className="text-gradient"
-            stagger={0.07}
-            delay={0.25}
+            stagger={0.08}
+            delay={0.3}
           />
         </h1>
 
