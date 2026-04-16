@@ -207,7 +207,7 @@
   "leadBlock": {
     "telegram": {
       "title": "Telegram",
-      "desc": "Direct message to Alex. Fastest path.",
+      "desc": "Direct conversation with Oleksii. The fastest path.",
       "cta": "Message"
     },
     "form": {
@@ -233,10 +233,9 @@
     "serviceLabel": "Service type",
     "servicePlaceholder": "Pick a direction",
     "serviceOptions": {
-      "mvp": "SaaS MVP",
-      "automation": "Business Automation",
-      "ai-agents": "AI Agents",
-      "integrations": "Custom Integrations",
+      "ai-agents": "AI Coworkers",
+      "automation": "Process Automation",
+      "systems": "Internal Systems (CRM, dashboards)",
       "other": "Not sure yet / other"
     },
     "descLabel": "Briefly about the project",
@@ -270,12 +269,13 @@
     "meanwhile": "Meanwhile — check what we've already built"
   },
   "targetLanding": {
-    "painTitle": "What's painful in your situation",
-    "includedTitle": "What's included",
-    "stackTitle": "What we build with",
-    "timelineTitle": "Rough timeline",
-    "proofTitle": "Example from NLO Ecosystem",
-    "faqTitle": "Frequently asked questions"
+    "painTitle": "What's hurting right now",
+    "includedTitle": "What's included in the package",
+    "stackTitle": "Tools we use",
+    "timelineTitle": "How it happens",
+    "proofTitle": "Our real-world experience",
+    "faqTitle": "Common owner objections",
+    "offer": "Save $3-8K/month on payroll. In 3 weeks — or your deposit back."
   },
   "mvp": {
     "meta": {
@@ -359,248 +359,241 @@
   "automation": {
     "meta": {
       "title": "Business Process Automation — NLO Coding",
-      "description": "CRM, ETL, workflows. Free your team from repetitive work via n8n, Zapier, Make + custom scripts."
+      "description": "Give your team back 20-40 hours per week. CRM, reports, orders, integrations — no manual work, ready in 2-3 weeks."
     },
     "hero": {
-      "badge": "For businesses",
-      "title": "Automate the grind",
-      "titleAccent": "and give your team back time",
-      "subtitle": "If your team copies data between spreadsheets, we'll kill it. CRM, ETL, workflows, reports, cross-tool integrations. Your team gets to do revenue-generating work instead of busywork.",
-      "cta": "Discuss automation"
+      "badge": "For business owners",
+      "title": "Your team is copying data",
+      "titleAccent": "instead of making money",
+      "subtitle": "Every hour spent moving data from Excel to CRM is an hour your manager isn't selling. We automate routine in 2-3 weeks. Get 20-40 team hours back per week — or your deposit back.",
+      "cta": "Discuss my business"
     },
     "pains": [
       {
-        "title": "Your team wastes hours copying data",
-        "desc": "Excel → CRM → Email → Excel again. Errors, delays, burnout. One day of automation = weeks saved per year."
+        "title": "Your managers are data couriers",
+        "desc": "Excel → CRM → Telegram → accounting → back to Excel. Errors, duplicates, delays. You're paying salaries for copy-paste."
       },
       {
-        "title": "Tools don't talk to each other",
-        "desc": "Google Sheets, Notion, CRM, accounting, email — each lives alone. Data gets duplicated, sync is manual."
+        "title": "Every system is its own island",
+        "desc": "CRM can't see accounting. Accounting can't see inventory. Inventory can't see orders. You can't see anything in real time."
       },
       {
-        "title": "Reports take a week; you needed them yesterday",
-        "desc": "Leadership wants real-time metrics. Instead, an analyst cobbles together Excel for three days straight."
+        "title": "Last week's report was outdated yesterday",
+        "desc": "By the time your analyst finishes the Excel report, you've already made decisions on stale data. Your competitor checked a dashboard this morning and moved faster."
       }
     ],
     "included": [
-      "Audit of current processes (team interviews)",
-      "Process map + ROI calculation per process",
-      "Workflow design in n8n/Zapier/Make",
-      "Integrations with CRM, ERP, email, Slack, Notion",
-      "Power scripts (Python/TypeScript) for complex cases",
-      "Real-time dashboard (Grafana or Metabase)",
-      "Team training: how to maintain when things break",
-      "Documentation + runbook for edge cases",
-      "2 weeks of support + monitoring"
+      "Process audit (30 min free) + ROI calculation",
+      "Process map: what we automate, what stays with people",
+      "Workflows in n8n/Make/Zapier — or custom, if needed",
+      "Integrations with CRM, accounting, email, Telegram, WhatsApp",
+      "Real-time dashboard (replaces Excel reports)",
+      "Auto-notifications: orders, statuses, failures",
+      "Training one person on your team (keymaster, 2-3 hours)",
+      "Documentation: what to do when something breaks",
+      "2 weeks of free monitoring"
     ],
-    "stack": ["n8n", "Zapier", "Make", "Python", "Supabase", "Airtable", "Notion API", "Slack API"],
+    "stack": ["n8n", "Make", "Zapier", "Python", "Supabase", "Airtable", "Telegram API", "WhatsApp Business"],
     "timeline": [
       {
         "title": "Week 1",
-        "desc": "Audit + process mapping. Top-3 by ROI selected. Scope + proposal."
+        "desc": "Process audit. Pick the top 3 by ROI. Lock scope + proposal with a number."
       },
       {
         "title": "Week 2",
-        "desc": "Build workflows + test runs. Team training."
+        "desc": "Build workflows + test on real data. Train the keymaster."
       },
       {
         "title": "Week 3+",
-        "desc": "Remaining processes by priority. Monitoring."
+        "desc": "Remaining processes by priority. Monitoring + fine-tune. Handover."
       }
     ],
     "proof": {
-      "product": "NLO Platform · AI Hub Daemon",
-      "url": "https://nloplatform.com",
-      "desc": "Automated daemon that watches ideas, GitHub issues, content calendar, and pushes tasks to AI agents. Runs 24/7, no human intervention. Built in 2 weeks."
+      "product": "NLO Ecosystem Automation",
+      "url": "https://nloeco.com",
+      "desc": "5 SaaS products synced into one ecosystem: shared database, automatic referrals, unified partner dashboard. Orders, payouts, analytics — all running without manual work. Built in 3 weeks."
     },
     "faq": [
       {
-        "q": "Do we need a tech team to maintain this?",
-        "a": "No. Automations on a no-code stack (n8n, Zapier) can be maintained by someone non-technical. We train one person on your team as the keymaster."
+        "q": "Do we need a developer to maintain this?",
+        "a": "No. Automations on n8n/Make can be maintained by someone with no coding skills. We train one person on your team as the keymaster — 2-3 hours."
       },
       {
-        "q": "What if the process changes?",
-        "a": "We design workflows modularly. 80% of changes — adding a step or tweaking a condition — take minutes. Complex changes: 30-min discovery + fix in 1-2 days."
+        "q": "What if our business process changes?",
+        "a": "80% of changes — adding a step or a condition — take minutes. More complex ones: 30-min discovery + fix in a day or two. Workflows are modular, not monolithic."
       },
       {
-        "q": "How much does automation typically save?",
-        "a": "Real client examples: 10-30 team hours per week. Plus fewer errors — hard to price directly, but critical."
+        "q": "How much will we actually save?",
+        "a": "Typically: 20-40 team hours per week. That's $2-5K/month in payroll. Plus fewer errors — harder to quantify, but critical for customer experience."
       },
       {
-        "q": "Can you integrate our legacy software?",
-        "a": "Almost always yes. If it has an API or CSV export, we can integrate. Even Excel files via OneDrive/Google Drive — works."
+        "q": "We have legacy software (old CRM, accounting) — does it work?",
+        "a": "Almost always yes. If it has an API or at least CSV export, we can integrate. Even Excel via OneDrive/Google Drive works. We check during the audit."
       }
     ]
   },
   "aiAgents": {
     "meta": {
-      "title": "AI Agents for business — NLO Coding",
-      "description": "Virtual employees on Claude/GPT: support, sales, research. Work 24/7, don't get tired, don't quit."
+      "title": "AI Coworkers for Business — NLO Coding",
+      "description": "Replace routine roles with AI agents: support, sales, research. Running 24/7, costing 10x less than a salary."
     },
     "hero": {
-      "badge": "For teams",
-      "title": "A virtual employee",
-      "titleAccent": "instead of a whole department",
-      "subtitle": "AI agents on Claude/GPT that handle customer support, qualify leads, do research, write content. Work 24/7, scale for free, never quit.",
-      "cta": "Discuss an agent"
+      "badge": "For business owners",
+      "title": "Paying salaries for routine?",
+      "titleAccent": "AI will do it for $50/month",
+      "subtitle": "AI coworkers answer customers, qualify leads, find new prospects, prepare reports. 24/7, no sick days, no 'I'm putting in my two weeks.' Up and running in 2-3 weeks — or your deposit back.",
+      "cta": "Discuss my business"
     },
     "pains": [
       {
-        "title": "Customer support is a bottleneck",
-        "desc": "Support writes the same answers 100 times a day. New customers wait hours. You lose leads."
+        "title": "Support gives the same answer 100 times a day",
+        "desc": "Customer asks 'where's my order?' — rep checks CRM, copies the status, sends it. 100 times. Every day. For $800/month."
       },
       {
-        "title": "Lead qualification eats sales time",
-        "desc": "Sales spends 60% of time on people who won't buy. Instead of closing — disqualifying."
+        "title": "Sales spends 60% of their time on people who won't buy",
+        "desc": "A 'just checking the price' inquiry, a bot submission, a 'let me think about it.' Your rep treats them all the same — and can't get to the ones who are actually ready."
       },
       {
-        "title": "Research takes weeks",
-        "desc": "Competitive analysis, prospecting, hypothesis validation — manual work that should be automatic."
+        "title": "You scale by hiring, not by building systems",
+        "desc": "+50 customers = +1 rep. Always. That's a linear model — AI breaks it: the same agent handles 10 and 10,000 requests per month at the same cost."
       }
     ],
     "included": [
-      "Discovery: which tasks you're ready to delegate to AI",
-      "Agent design: role, instructions, constraints",
-      "Knowledge base: your data, FAQ, policies",
-      "Integrations: CRM, email, Slack, WhatsApp, website",
-      "Human-in-the-loop: escalation to humans",
-      "Quality monitoring (sample review)",
-      "Prompt fine-tuning after live testing",
-      "Analytics: conversation count, CSAT, escalation rate",
-      "Documentation + team instructions",
+      "Audit: which roles can be delegated to AI (30 min free)",
+      "Agent design: role, instructions, constraints, brand tone",
+      "Knowledge base from your data: FAQs, pricing, policies, scripts",
+      "Integrations: CRM, Telegram, WhatsApp, email, website",
+      "Human-in-the-loop: complex or sensitive cases → escalation to a human",
+      "Voice extraction: the agent speaks in your tone, not like ChatGPT",
+      "Quality monitoring: 100% review in the first week",
+      "Analytics: conversations, CSAT, escalation rate, ROI",
+      "Team training: how to work alongside an AI colleague",
       "2 weeks of support with daily monitoring"
     ],
-    "stack": ["Claude API", "OpenAI API", "Trigger.dev", "Supabase", "Vercel", "Telegram Bot API", "WhatsApp Business"],
+    "stack": ["Claude API", "OpenAI API", "n8n", "Supabase", "Telegram Bot API", "WhatsApp Business", "Voiceflow"],
     "timeline": [
       {
         "title": "Week 1",
-        "desc": "Discovery + agent design. Knowledge base structure. Prototype test."
+        "desc": "Role audit + agent design. Build the knowledge base. Test on 10 real requests."
       },
       {
         "title": "Week 2",
-        "desc": "Build + soft-launch on 5-10% of traffic. Daily review of responses."
+        "desc": "Soft launch on 5-10% of traffic. Daily review of every response. Prompt fine-tuning."
       },
       {
         "title": "Week 3",
-        "desc": "Rollout to 100%. Fine-tune on real conversations. Handover."
+        "desc": "Rollout to 100%. Team is trained. Handover + monitoring."
       }
     ],
     "proof": {
-      "product": "NLO Studio · Content Agents",
+      "product": "NLO Studio AI Agents",
       "url": "https://nlostudio.com",
-      "desc": "Agents that write scripts, brainstorm ideas, publish posts for 9+ platforms. One call — 30 ready-to-publish content pieces. Serves 6 clients in parallel without coordination."
+      "desc": "AI agents that write scripts, create posts for 9+ platforms, generate videos. One trigger — 30 content pieces. Serving multiple clients simultaneously with zero coordination. Replaced 2 content managers."
     },
     "faq": [
       {
-        "q": "What if the AI says something wrong?",
-        "a": "Human-in-the-loop. For complex or sensitive topics, the agent escalates to a human. Plus we monitor 100% of responses in week one, then a sample. Errors fixed immediately."
+        "q": "What if the AI says something wrong to a customer?",
+        "a": "Human-in-the-loop. Anything complex or unfamiliar gets escalated to a human. We monitor 100% of responses in week one, then a sample after. Errors are fixed immediately."
       },
       {
-        "q": "How much knowledge can an agent handle?",
-        "a": "RAG architecture supports thousands of documents. We design embedding + retrieval so the agent always pulls current information."
+        "q": "Won't customers be offended they're talking to a bot?",
+        "a": "90% of customers don't realize they're talking to AI — because responses are fast, relevant, and in the right tone. Those who do notice appreciate not waiting 3 hours."
       },
       {
-        "q": "Does the agent respond in my brand voice?",
-        "a": "Yes. We run voice extraction from your existing materials (emails, support tickets, blog). The agent writes like you, not like ChatGPT."
+        "q": "What if I want to replace a specific role?",
+        "a": "We start with an audit of that exact role: how many hours go where, what repeats, where errors happen. Typically 60-80% of one person's workload can be fully automated."
       },
       {
-        "q": "What does maintenance cost?",
-        "a": "Depends on volume. Claude/OpenAI API — $50-500/mo depending on traffic. Hosting — $20-50/mo. Plus our monitoring/improvement retainer if needed."
+        "q": "How much does it cost to run an AI agent after launch?",
+        "a": "API (Claude/OpenAI) — $50-300/month depending on volume. Hosting — $20-50/month. Total — 5-10x cheaper than a salary for the same role."
       }
     ]
   },
   "about": {
     "meta": {
-      "title": "About NLO Coding",
-      "description": "NLO Coding is part of the NLO Ecosystem — a delivery service for SaaS, automations, and AI agents."
+      "title": "About NLO Coding — who we are and how we work",
+      "description": "Business architect + AI = process automation for business owners. 200+ consultations, Bottleneck methodology, 5 SaaS in a year."
     },
     "hero": {
       "eyebrow": "About",
-      "title": "NLO Coding isn't an agency.",
-      "titleAccent": "It's proof that Vibe Coding works.",
-      "subtitle": "We build the NLO Ecosystem — six SaaS products shipped by one person with AI in a year. Now we apply the same approach to client projects."
+      "title": "I'm not from IT.",
+      "titleAccent": "I'm from business.",
+      "subtitle": "For 12+ years I built sales teams, marketing strategies, and CRM systems. Then I taught AI to do it with minimal human involvement. NLO Coding is building business systems by someone who understands P&L, not just code."
     },
     "philosophy": {
-      "title": "Next Level Ownership",
-      "p1": "NLO stands for Next Level Ownership — the next tier of owning your own life. We believe business should serve the human, not the other way around.",
-      "p2": "So we don't drag projects for years, don't sell a minimal-output retainer, don't hide code behind vendor lock-in. Fast, transparent, code is yours — and you own your time.",
-      "p3": "Vibe Coding is our tool, not our ideology. AI accelerates where it makes sense: code gen, refactoring, research, tests. But architecture, decisions, and critical paths — humans with taste."
+      "title": "Why this works",
+      "p1": "Most IT companies don't understand their client's business. They ask for a spec — and you don't know what to write. I start with an audit: where's the money, where are the leaks, what can be automated — and only then do I write code.",
+      "p2": "That's why we don't drag projects for years, don't sell retainers with minimal results, don't hide configurations behind lock-in. Fast, transparent, all access is yours.",
+      "p3": "The Bottleneck methodology is my own framework. We find the narrowest point in your business — where the most revenue is slipping through — and fix that first. Not 'do everything at once,' but 'do one thing and see results within a week.'"
     },
     "founder": {
       "title": "Oleksii Nikolaichuk",
-      "p1": "12+ years of journey: sales rep → marketer → C-level (CMO, COO, R&D director) → own consultancy Bottle Neck → Sales Titans (sales team as a service) → Brand Exorcist (personal consulting practice). 200+ one-on-one consultations, 95% satisfied clients.",
-      "p2": "During COVID built 20-30+ websites with no programmers and mastered 80+ no-code tools. Author of the Bottleneck methodology (business bottleneck diagnosis) and the signature strategic session — 6 hours of work replacing months with an agency.",
-      "p3": "In 2024 started experimenting with AI-accelerated development — n8n → Claude Code → Vibe Coding. In 2 months shipped 5 SaaS products in the NLO Ecosystem. NLO Coding is the natural extension: apply the same approach to client work. I write the code myself, run projects as a partner. Currently based in Setúbal, Portugal.",
+      "p1": "12+ years: sales rep → marketer → C-level (CMO, COO, R&D director) → own consultancy Bottle Neck → Sales Titans (building sales teams) → Brand Exorcist (personal consulting). 200+ one-on-one consultations, 95% satisfied clients.",
+      "p2": "During COVID built 20-30+ websites without developers and mastered 80+ no-code tools. Author of the Bottleneck methodology (business bottleneck diagnosis) and the signature strategic session — 6 hours of work replacing months with an agency.",
+      "p3": "In 2024 started experimenting with AI-accelerated development — n8n → Claude Code → Vibe Coding. In 2 months shipped 5 SaaS products in the NLO Ecosystem. NLO Coding is the natural extension: apply the same approach to client work. I write the code myself, run projects as a partner. Currently based in Setubal, Portugal.",
       "exorcistCta": "Read more on Brand Exorcist ↗"
     },
     "ecosystem": {
-      "title": "NLO Ecosystem as proof",
-      "subtitle": "Six SaaS products shipped in a year. All live and working."
+      "title": "NLO Ecosystem — 5 AI services for business",
+      "subtitle": "Each one built using the same approach I offer to clients. Live, working, with real users."
     },
     "cta": {
-      "title": "Ready to discuss a project?",
-      "subtitle": "Message on Telegram or fill the form. I reply personally."
+      "title": "Ready to find out how much you can save?",
+      "subtitle": "30 minutes, free. I'll show you specific numbers for your business."
     }
   },
   "cases": {
     "meta": {
-      "title": "NLO Coding — Cases",
-      "description": "Six real SaaS products shipped in a year via the Vibe Coding approach."
+      "title": "Automation Examples — NLO Coding",
+      "description": "Real scenarios: AI support agent, sales qualifier, automated order processing, dashboards, research."
     },
     "hero": {
-      "eyebrow": "Cases",
-      "title": "Six SaaS in a year.",
-      "titleAccent": "By one person with AI.",
-      "subtitle": "We don't show NDA-locked client cases. Instead — our own products. Click, test, see for yourself."
+      "eyebrow": "Examples",
+      "title": "What exactly we automate",
+      "titleAccent": "and how much it saves",
+      "subtitle": "Typical scenarios for businesses with teams of 5-50 people. Exact savings depend on your business — we'll calculate during a free audit."
     },
     "items": {
-      "platform": {
-        "title": "NLO Platform",
-        "category": "AI Agent Meta-Platform",
-        "desc": "Command center for AI agents that build SaaS autonomously. Railway API, GitHub Octokit, Claude Agent SDK.",
-        "stack": "Next.js · Supabase · Trigger.dev · Claude API",
-        "duration": "6 weeks"
+      "support": {
+        "title": "AI Support Agent",
+        "category": "Customer Support",
+        "desc": "Replaces 2 front-line support reps. CSAT 90%+, 24/7, 3-second response time. Complex questions → escalation to a human. Speaks in your brand's tone.",
+        "stack": "Claude API · Telegram Bot · WhatsApp · CRM",
+        "duration": "2-3 weeks"
       },
-      "studio": {
-        "title": "NLO Studio",
-        "category": "AI Content Factory",
-        "desc": "One idea → dozens of videos and posts for 9+ platforms. YouTube long-form pipeline, Kling AI, FFmpeg, ElevenLabs.",
-        "stack": "Next.js · Framer Motion · Trigger.dev · fal.ai",
-        "duration": "8 weeks"
-      },
-      "strategy": {
-        "title": "NLO Strategy",
-        "category": "AI Marketing Consultant",
-        "desc": "7-phase dialogue → 15-section marketing document. Replaces months with an agency.",
-        "stack": "Next.js · Supabase · OpenAI · Stripe",
-        "duration": "3 weeks"
-      },
-      "finance": {
-        "title": "NLO Finance",
-        "category": "AI Financial Model Builder",
-        "desc": "Build a financial model through dialogue. Cash flow forecast, PnL, investment models. Replaces a $5K consultant.",
-        "stack": "Next.js · Recharts · Claude API · Stripe",
-        "duration": "3 weeks"
-      },
-      "brand": {
-        "title": "NLO Brand",
-        "category": "Personal Brand Builder",
-        "desc": "7-phase dialogue → complete brand guide. Positioning, voice, visual, tone — all in 30 minutes.",
-        "stack": "Next.js · Supabase · Claude API",
+      "sales": {
+        "title": "Sales Qualifier",
+        "category": "Sales",
+        "desc": "AI processes every lead from forms and messengers. Qualifies, collects data, passes only hot prospects to your rep. SDRs spend time closing, not filtering.",
+        "stack": "OpenAI API · n8n · CRM · Telegram",
         "duration": "2 weeks"
       },
-      "brain": {
-        "title": "NLO Brain",
-        "category": "Second Brain SaaS",
-        "desc": "AI companion for ideas, notes, reflection. Vector search, AI suggestions, daily summaries.",
-        "stack": "Next.js · Supabase · pgvector · OpenAI",
+      "orders": {
+        "title": "Automated Order Processing",
+        "category": "Operations",
+        "desc": "Syncs orders across Shopify/WooCommerce/accounting/Telegram chats. Status updates, customer SMS, receipts — zero manual copying. No more human errors.",
+        "stack": "n8n · Make · Accounting API · Telegram",
+        "duration": "1-2 weeks"
+      },
+      "dashboard": {
+        "title": "Real-time Dashboard",
+        "category": "Analytics",
+        "desc": "Sales, conversions, margin by category — live. Spot problems Monday morning, not Friday evening. Your analyst works on strategy, not Excel reports.",
+        "stack": "Supabase · Metabase · n8n · CRM API",
         "duration": "2 weeks"
+      },
+      "research": {
+        "title": "AI Research Agent",
+        "category": "Lead Generation",
+        "desc": "Finds potential clients by your criteria from LinkedIn, Google, directories. 100 leads/day instead of an $800/month research hire. Costs $50/month in API.",
+        "stack": "Claude API · Python · Supabase · LinkedIn",
+        "duration": "1-2 weeks"
       }
     },
-    "visitCta": "Open",
+    "visitCta": "Discuss",
     "cta": {
-      "title": "Want something similar?",
-      "subtitle": "Let's discuss what we'll build for your business."
+      "title": "Want savings like this in your business?",
+      "subtitle": "30 minutes, free. I'll show you which of these scenarios work for you and how much you'll save."
     }
   },
   "contact": {

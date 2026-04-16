@@ -8,7 +8,7 @@ import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/client";
 import { Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-const SERVICE_KEYS = ["mvp", "automation", "ai-agents", "integrations", "other"] as const;
+const SERVICE_KEYS = ["ai-agents", "automation", "systems", "other"] as const;
 const BUDGET_KEYS = ["under-3k", "3k-10k", "10k-30k", "30k+", "unknown"] as const;
 
 type ServiceKey = (typeof SERVICE_KEYS)[number];

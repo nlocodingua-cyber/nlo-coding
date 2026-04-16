@@ -102,11 +102,21 @@ export function TargetPage({ namespace, slug, accent }: TargetPageProps) {
             {t("hero.subtitle")}
           </motion.p>
 
+          {/* Offer strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="mt-6 inline-block px-5 py-2 rounded-xl bg-primary/10 border border-primary/20 text-primary text-sm font-medium"
+          >
+            {shared("offer")}
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-10 flex justify-center"
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-8 flex justify-center"
           >
             <Magnetic>
               <a href={telegramWithUtm(slug)} target="_blank" rel="noopener noreferrer">

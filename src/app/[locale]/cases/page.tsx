@@ -2,12 +2,12 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Nav } from "@/components/shared/Nav";
 import { Footer } from "@/components/shared/Footer";
 import { AuroraBg } from "@/components/shared/AuroraBg";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { LeadBlock } from "@/components/shared/LeadBlock";
 import { Spotlight } from "@/components/shared/Spotlight";
 import { TiltCard } from "@/components/shared/TiltCard";
-import { Eyebrow } from "@/components/shared/Eyebrow";
-import { NLO_PRODUCTS } from "@/lib/constants";
-import { ExternalLink } from "lucide-react";
+import { Headphones, MessagesSquare, Package, BarChart3, Search } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
@@ -22,13 +22,28 @@ export async function generateMetadata({
   return { title: t("title"), description: t("description") };
 }
 
+type CaseKey = "support" | "sales" | "orders" | "dashboard" | "research";
+
+interface UseCaseDef {
+  key: CaseKey;
+  icon: LucideIcon;
+  color: "cyan" | "purple" | "green" | "orange" | "pink";
+}
+
+const CASES: UseCaseDef[] = [
+  { key: "support", icon: Headphones, color: "purple" },
+  { key: "sales", icon: MessagesSquare, color: "green" },
+  { key: "orders", icon: Package, color: "cyan" },
+  { key: "dashboard", icon: BarChart3, color: "orange" },
+  { key: "research", icon: Search, color: "pink" },
+];
+
 const colorMap = {
   cyan: "text-[var(--chart-1)]",
   purple: "text-[var(--chart-2)]",
   green: "text-[var(--chart-3)]",
   orange: "text-[var(--chart-4)]",
   pink: "text-[var(--chart-5)]",
-  blue: "text-[#3b82f6]",
 } as const;
 
 export default async function CasesPage({
@@ -58,7 +73,6 @@ function CasesHero() {
     <section className="relative min-h-[55vh] flex items-center overflow-hidden pt-32 pb-16">
       <AuroraBg />
       <div className="absolute inset-0 bg-dot-grid opacity-60" aria-hidden="true" />
-
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <Eyebrow className="mb-8">{t("eyebrow")}</Eyebrow>
         <h1
@@ -88,43 +102,34 @@ function CasesGrid() {
     <section className="relative py-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-5">
-          {NLO_PRODUCTS.map((p) => {
-            const Icon = p.icon;
+          {CASES.map((c) => {
+            const Icon = c.icon;
             return (
-              <TiltCard key={p.key} maxTilt={5} className="h-full rounded-2xl">
-                <a
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block h-full rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm overflow-hidden hover:border-white/25 transition-all duration-300"
-                >
+              <TiltCard key={c.key} maxTilt={5} className="h-full rounded-2xl">
+                <div className="group h-full rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm overflow-hidden hover:border-white/25 transition-all duration-300">
                   <Spotlight className="p-8">
                     <div className="flex items-start justify-between mb-5">
-                      <div className={cn("inline-flex items-center justify-center size-12 rounded-xl bg-white/5 border border-white/10", colorMap[p.color])}>
+                      <div className={cn("inline-flex items-center justify-center size-12 rounded-xl bg-white/5 border border-white/10", colorMap[c.color])}>
                         <Icon className="size-5" />
                       </div>
                       <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-foreground-muted">
-                        {t(`items.${p.key}.duration`)}
+                        {t(`items.${c.key}.duration`)}
                       </div>
                     </div>
-                    <div className={cn("text-[10px] font-mono uppercase tracking-[0.25em] mb-2", colorMap[p.color])}>
-                      {t(`items.${p.key}.category`)}
+                    <div className={cn("text-[10px] font-mono uppercase tracking-[0.25em] mb-2", colorMap[c.color])}>
+                      {t(`items.${c.key}.category`)}
                     </div>
                     <h3 className="font-display text-2xl font-semibold mb-3 tracking-tight">
-                      {t(`items.${p.key}.title`)}
+                      {t(`items.${c.key}.title`)}
                     </h3>
                     <p className="text-[14px] text-foreground/65 leading-relaxed mb-6">
-                      {t(`items.${p.key}.desc`)}
+                      {t(`items.${c.key}.desc`)}
                     </p>
-                    <div className="text-xs font-mono text-foreground-muted mb-5">
-                      {t(`items.${p.key}.stack`)}
-                    </div>
-                    <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.2em] text-primary">
-                      {t("visitCta")}
-                      <ExternalLink className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <div className="text-xs font-mono text-foreground-muted">
+                      {t(`items.${c.key}.stack`)}
                     </div>
                   </Spotlight>
-                </a>
+                </div>
               </TiltCard>
             );
           })}
