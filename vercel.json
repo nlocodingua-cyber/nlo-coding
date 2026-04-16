@@ -1,0 +1,12 @@
+{
+  "framework": "nextjs",
+  "regions": ["fra1"],
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "master": true
+    }
+  },
+  "installCommand": "npm install --production=false",
+  "buildCommand": "NODE_OPTIONS='--max-old-space-size=7168' next build"
+}
