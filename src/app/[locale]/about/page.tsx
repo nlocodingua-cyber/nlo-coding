@@ -3,7 +3,7 @@ import { Nav } from "@/components/shared/Nav";
 import { Footer } from "@/components/shared/Footer";
 import { Proof } from "@/components/landing/Proof";
 import { LeadBlock } from "@/components/shared/LeadBlock";
-import { GlowOrbs } from "@/components/shared/GlowOrbs";
+import { AuroraBg } from "@/components/shared/AuroraBg";
 import { Button } from "@/components/ui/button";
 import { BRAND_EXORCIST_URL } from "@/lib/constants";
 import { ArrowUpRight } from "lucide-react";
@@ -46,20 +46,29 @@ export default async function AboutPage({
 function AboutHero() {
   const t = useTranslations("about.hero");
   return (
-    <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-28 pb-16">
-      <GlowOrbs />
-      <div className="absolute inset-0 grid-bg-dense opacity-30" aria-hidden="true" />
+    <section className="relative min-h-[70vh] flex items-center overflow-hidden pt-32 pb-20">
+      <AuroraBg />
+      <div className="absolute inset-0 bg-dot-grid opacity-60" aria-hidden="true" />
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-primary mb-6">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-mono uppercase tracking-[0.25em] text-foreground/80 mb-7">
+          <span className="size-1 rounded-full bg-primary" />
           {t("eyebrow")}
         </div>
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
-          <span className="text-foreground">{t("title")}</span>
+        <h1
+          className="font-display font-bold text-balance mx-auto"
+          style={{
+            fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.035em",
+            maxWidth: "20ch",
+          }}
+        >
+          <span className="display-title">{t("title")}</span>
           <br />
           <span className="text-gradient">{t("titleAccent")}</span>
         </h1>
-        <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-7 text-base sm:text-lg text-foreground/65 max-w-2xl mx-auto leading-[1.55] text-balance">
           {t("subtitle")}
         </p>
       </div>
@@ -70,12 +79,15 @@ function AboutHero() {
 function Philosophy() {
   const t = useTranslations("about.philosophy");
   return (
-    <section className="relative py-20 sm:py-24 bg-[var(--background-secondary)]/50">
+    <section className="relative py-24 sm:py-28 bg-[var(--background-secondary)]/50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-8 text-center">
+        <h2
+          className="font-display font-bold text-balance mb-10 text-center display-title"
+          style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
+        >
           {t("title")}
         </h2>
-        <div className="space-y-5 text-base text-foreground/80 leading-relaxed">
+        <div className="space-y-6 text-[15px] sm:text-base text-foreground/80 leading-[1.7]">
           <p>{t("p1")}</p>
           <p>{t("p2")}</p>
           <p>{t("p3")}</p>
@@ -88,19 +100,25 @@ function Philosophy() {
 function FounderStory() {
   const t = useTranslations("about.founder");
   return (
-    <section className="relative py-20 sm:py-24">
+    <section className="relative py-24 sm:py-28">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-8 text-center">
+        <h2
+          className="font-display font-bold text-balance mb-10 text-center display-title"
+          style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
+        >
           {t("title")}
         </h2>
-        <div className="space-y-5 text-base text-foreground/80 leading-relaxed">
+        <div className="space-y-6 text-[15px] sm:text-base text-foreground/80 leading-[1.7]">
           <p>{t("p1")}</p>
           <p>{t("p2")}</p>
           <p>{t("p3")}</p>
         </div>
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-12">
           <a href={BRAND_EXORCIST_URL} target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" className="neon-border">
+            <Button
+              variant="outline"
+              className="h-11 px-6 border-white/10 bg-white/[0.02] hover:bg-white/[0.06] hover:border-white/20"
+            >
               {t("exorcistCta")}
               <ArrowUpRight className="size-4" />
             </Button>
@@ -114,14 +132,19 @@ function FounderStory() {
 function AboutCTA() {
   const t = useTranslations("about.cta");
   return (
-    <section className="relative py-20 sm:py-24 bg-[var(--background-secondary)]/50">
+    <section className="relative py-24 sm:py-28 bg-[var(--background-secondary)]/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-3 text-center">
-          {t("title")}
-        </h2>
-        <p className="text-base text-foreground/70 text-center max-w-2xl mx-auto mb-14">
-          {t("subtitle")}
-        </p>
+        <div className="text-center mb-14">
+          <h2
+            className="font-display font-bold text-balance mb-4 display-title"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
+          >
+            {t("title")}
+          </h2>
+          <p className="text-[15px] sm:text-base text-foreground/65 max-w-xl mx-auto leading-relaxed">
+            {t("subtitle")}
+          </p>
+        </div>
         <LeadBlock campaign="about" />
       </div>
     </section>

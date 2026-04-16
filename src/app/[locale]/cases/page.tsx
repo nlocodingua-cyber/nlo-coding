@@ -1,8 +1,9 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Nav } from "@/components/shared/Nav";
 import { Footer } from "@/components/shared/Footer";
-import { GlowOrbs } from "@/components/shared/GlowOrbs";
+import { AuroraBg } from "@/components/shared/AuroraBg";
 import { LeadBlock } from "@/components/shared/LeadBlock";
+import { Spotlight } from "@/components/shared/Spotlight";
 import { NLO_PRODUCTS } from "@/lib/constants";
 import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -52,20 +53,29 @@ export default async function CasesPage({
 function CasesHero() {
   const t = useTranslations("cases.hero");
   return (
-    <section className="relative min-h-[50vh] flex items-center overflow-hidden pt-28 pb-16">
-      <GlowOrbs />
-      <div className="absolute inset-0 grid-bg-dense opacity-30" aria-hidden="true" />
+    <section className="relative min-h-[55vh] flex items-center overflow-hidden pt-32 pb-16">
+      <AuroraBg />
+      <div className="absolute inset-0 bg-dot-grid opacity-60" aria-hidden="true" />
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-primary mb-6">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-mono uppercase tracking-[0.25em] text-foreground/80 mb-7">
+          <span className="size-1 rounded-full bg-primary" />
           {t("eyebrow")}
         </div>
-        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
-          <span className="text-foreground">{t("title")}</span>
+        <h1
+          className="font-display font-bold text-balance mx-auto"
+          style={{
+            fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
+            lineHeight: 0.98,
+            letterSpacing: "-0.035em",
+            maxWidth: "18ch",
+          }}
+        >
+          <span className="display-title">{t("title")}</span>
           <br />
           <span className="text-gradient">{t("titleAccent")}</span>
         </h1>
-        <p className="text-base sm:text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-7 text-base sm:text-lg text-foreground/65 max-w-2xl mx-auto leading-[1.55] text-balance">
           {t("subtitle")}
         </p>
       </div>
@@ -87,32 +97,34 @@ function CasesGrid() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group glass neon-card-glow p-7 hover-lift"
+                className="group block rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm overflow-hidden hover:border-white/25 hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={cn("inline-flex items-center justify-center size-11 rounded-lg bg-white/5", colorMap[p.color])}>
-                    <Icon className="size-5" />
+                <Spotlight className="p-8">
+                  <div className="flex items-start justify-between mb-5">
+                    <div className={cn("inline-flex items-center justify-center size-12 rounded-xl bg-white/5 border border-white/10", colorMap[p.color])}>
+                      <Icon className="size-5" />
+                    </div>
+                    <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-foreground-muted">
+                      {t(`items.${p.key}.duration`)}
+                    </div>
                   </div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-foreground-muted">
-                    {t(`items.${p.key}.duration`)}
+                  <div className={cn("text-[10px] font-mono uppercase tracking-[0.25em] mb-2", colorMap[p.color])}>
+                    {t(`items.${p.key}.category`)}
                   </div>
-                </div>
-                <div className={cn("text-[10px] font-mono uppercase tracking-widest mb-2", colorMap[p.color])}>
-                  {t(`items.${p.key}.category`)}
-                </div>
-                <h3 className="font-display text-xl font-semibold mb-3">
-                  {t(`items.${p.key}.title`)}
-                </h3>
-                <p className="text-sm text-foreground/70 leading-relaxed mb-5">
-                  {t(`items.${p.key}.desc`)}
-                </p>
-                <div className="text-xs font-mono text-foreground-muted mb-5">
-                  {t(`items.${p.key}.stack`)}
-                </div>
-                <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-primary">
-                  {t("visitCta")}
-                  <ExternalLink className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </div>
+                  <h3 className="font-display text-2xl font-semibold mb-3 tracking-tight">
+                    {t(`items.${p.key}.title`)}
+                  </h3>
+                  <p className="text-[14px] text-foreground/65 leading-relaxed mb-6">
+                    {t(`items.${p.key}.desc`)}
+                  </p>
+                  <div className="text-xs font-mono text-foreground-muted mb-5">
+                    {t(`items.${p.key}.stack`)}
+                  </div>
+                  <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-[0.2em] text-primary">
+                    {t("visitCta")}
+                    <ExternalLink className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </div>
+                </Spotlight>
               </a>
             );
           })}
@@ -125,14 +137,19 @@ function CasesGrid() {
 function CasesCTA() {
   const t = useTranslations("cases.cta");
   return (
-    <section className="relative py-20 sm:py-24 bg-[var(--background-secondary)]/50 mt-8">
+    <section className="relative py-24 sm:py-28 bg-[var(--background-secondary)]/50 mt-8">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="font-display text-3xl sm:text-4xl font-bold mb-3 text-center">
-          {t("title")}
-        </h2>
-        <p className="text-base text-foreground/70 text-center max-w-2xl mx-auto mb-14">
-          {t("subtitle")}
-        </p>
+        <div className="text-center mb-14">
+          <h2
+            className="font-display font-bold text-balance mb-4 display-title"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", lineHeight: 1.02, letterSpacing: "-0.03em" }}
+          >
+            {t("title")}
+          </h2>
+          <p className="text-[15px] sm:text-base text-foreground/65 max-w-xl mx-auto leading-relaxed">
+            {t("subtitle")}
+          </p>
+        </div>
         <LeadBlock campaign="cases" />
       </div>
     </section>

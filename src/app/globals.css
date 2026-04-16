@@ -145,7 +145,7 @@
   --radius-xl: var(--radius-xl);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-onest);
 
   --animate-fade-up: fade-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
   --animate-fade-in: fade-in 0.4s ease both;
@@ -154,16 +154,27 @@
   --animate-slide-in-right: slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) both;
   --animate-scan-line: scan-line 3s linear infinite;
   --animate-pulse-neon: pulse-neon 2s ease-in-out infinite;
+  --animate-aurora-slow: aurora-slow 20s ease-in-out infinite;
+  --animate-aurora-fast: aurora-fast 14s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-border-beam: border-beam 8s linear infinite;
+  --animate-shine: shine 3s ease-in-out infinite;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  letter-spacing: -0.02em;
 }
 
 /* Glassmorphism */
@@ -274,6 +285,37 @@ body {
   50% { transform: translateY(-12px); }
 }
 
+@keyframes aurora-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(60px, -40px) scale(1.1); }
+  66% { transform: translate(-40px, 30px) scale(0.95); }
+}
+
+@keyframes aurora-fast {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-80px, 50px) scale(1.15); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes border-beam {
+  0% { --beam-angle: 0deg; }
+  100% { --beam-angle: 360deg; }
+}
+
+@keyframes shine {
+  0% { background-position: -200% center; }
+  50%, 100% { background-position: 200% center; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 /* Utility Classes */
 .transition-smooth {
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -329,6 +371,15 @@ body {
 
 .text-gradient {
   background: linear-gradient(135deg, #00f0ff 0%, #7c3aed 50%, #00f0ff 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+.text-gradient-static {
+  background: linear-gradient(135deg, #00f0ff 0%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -339,6 +390,144 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Display-grade heading: big, tight, light-to-dark */
+.display-title {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, rgba(148, 163, 184, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer button effect — running light bar */
+.shine-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.shine-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: shine 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Aurora background layer */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+.aurora::before {
+  width: 620px;
+  height: 620px;
+  left: -10%;
+  top: -15%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.35) 0%, rgba(0, 240, 255, 0) 70%);
+  animation: aurora-slow 20s ease-in-out infinite;
+}
+.aurora::after {
+  width: 680px;
+  height: 680px;
+  right: -15%;
+  top: 10%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.32) 0%, rgba(124, 58, 237, 0) 70%);
+  animation: aurora-fast 14s ease-in-out infinite;
+}
+
+/* Dot-grid with radial fade */
+.bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(0, 240, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* Card spotlight — cursor-following radial gradient overlay */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    500px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(0, 240, 255, 0.12),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Border beam — rotating conic gradient border */
+.border-beam {
+  position: relative;
+  isolation: isolate;
+}
+.border-beam::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--beam-angle, 0deg),
+    transparent 0deg,
+    transparent 270deg,
+    rgba(0, 240, 255, 0.8) 300deg,
+    rgba(124, 58, 237, 0.8) 330deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-beam 8s linear infinite;
+  pointer-events: none;
+}
+@property --beam-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* Marquee row utility */
+.marquee-row {
+  display: flex;
+  gap: 3rem;
+  animation: marquee 40s linear infinite;
+  width: max-content;
+}
+
+/* Utility — text balance for headlines */
+.text-balance {
+  text-wrap: balance;
 }
 
 /* Scrollbar */

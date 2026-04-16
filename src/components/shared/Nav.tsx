@@ -32,7 +32,9 @@ export function Nav() {
     <header
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-300",
-        scrolled ? "glass-subtle border-b border-border" : "bg-transparent"
+        scrolled
+          ? "backdrop-blur-xl bg-[var(--background)]/70 border-b border-white/[0.06]"
+          : "bg-transparent"
       )}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -41,17 +43,17 @@ export function Nav() {
           className="font-display font-bold text-lg tracking-tight"
           aria-label="NLO Coding"
         >
-          <span className="text-gradient">NLO</span>
-          <span className="text-foreground/80"> Coding</span>
+          <span className="text-gradient-static">NLO</span>
+          <span className="text-foreground/90"> Coding</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((l) =>
             l.href.startsWith("/#") ? (
               <a
                 key={l.key}
                 href={l.href}
-                className="text-sm text-foreground/70 hover:text-primary transition-colors"
+                className="text-sm text-foreground/65 hover:text-foreground transition-colors"
               >
                 {t(l.key)}
               </a>
@@ -59,7 +61,7 @@ export function Nav() {
               <Link
                 key={l.key}
                 href={l.href}
-                className="text-sm text-foreground/70 hover:text-primary transition-colors"
+                className="text-sm text-foreground/65 hover:text-foreground transition-colors"
               >
                 {t(l.key)}
               </Link>
@@ -70,7 +72,7 @@ export function Nav() {
         <div className="flex items-center gap-3">
           <LocaleSwitch className="hidden sm:inline" />
           <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="hidden sm:inline-block">
-            <Button size="sm" className="neon-border gap-1.5">
+            <Button size="sm" className="h-9 px-4 gap-1.5 shadow-[0_0_24px_rgba(0,240,255,0.2)]">
               <Send className="size-3.5" />
               {t("cta")}
             </Button>
@@ -86,7 +88,7 @@ export function Nav() {
       </nav>
 
       {open && (
-        <div className="md:hidden glass-elevated border-t border-border">
+        <div className="md:hidden backdrop-blur-xl bg-[var(--background)]/90 border-t border-white/[0.06]">
           <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col gap-3">
             {links.map((l) =>
               l.href.startsWith("/#") ? (
@@ -94,7 +96,7 @@ export function Nav() {
                   key={l.key}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm text-foreground/80 hover:text-primary"
+                  className="text-sm text-foreground/80 hover:text-primary py-1.5"
                 >
                   {t(l.key)}
                 </a>
@@ -103,16 +105,16 @@ export function Nav() {
                   key={l.key}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm text-foreground/80 hover:text-primary"
+                  className="text-sm text-foreground/80 hover:text-primary py-1.5"
                 >
                   {t(l.key)}
                 </Link>
               )
             )}
-            <div className="flex items-center justify-between pt-3 border-t border-border">
+            <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
               <LocaleSwitch />
               <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-                <Button size="sm" className="neon-border gap-1.5">
+                <Button size="sm" className="h-9 gap-1.5">
                   <Send className="size-3.5" />
                   {t("cta")}
                 </Button>

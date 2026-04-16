@@ -122,7 +122,7 @@ export const NLO_PRODUCTS: Product[] = [
    External links
    ═══════════════════════════════════════════ */
 
-export const TELEGRAM_URL = "https://t.me/brandexorcist";
+export const TELEGRAM_URL = "https://t.me/lex36";
 export const CALENDLY_URL = "https://calendly.com/brandexorcist/discovery";
 export const BRAND_EXORCIST_URL = "https://brandexorcist.com.ua";
 export const NLO_ECOSYSTEM_URL = "https://nloeco.com";
