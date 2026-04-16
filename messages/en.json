@@ -61,7 +61,7 @@
     "solution": {
       "eyebrow": "How it works",
       "title": "AI doesn't replace strong people — it takes away work you shouldn't be paying them for",
-      "p1": "We combine AI agents (Claude, GPT), no-code automation (n8n, Zapier, Make), and custom systems. Things that needed a CTO and 3 devs a year ago now ship in 2-3 weeks with a guaranteed result.",
+      "p1": "I combine AI agents (Claude, GPT), no-code automation (n8n, Zapier, Make), and custom systems. Things that needed a CTO and 3 devs a year ago now ship in 2-3 weeks with a guaranteed result.",
       "p2": "This isn't 'magic AI'. It's engineering discipline: integrations, tests, monitoring, human-in-the-loop. Your team doesn't go away — it works at higher output, on things that actually move revenue.",
       "bullets": [
         "AI coworkers for support, sales, research — 24/7, no sick days",
@@ -73,7 +73,7 @@
     },
     "services": {
       "eyebrow": "Services",
-      "title": "What we do",
+      "title": "What I do",
       "subtitle": "Three directions that make your business earn more with a smaller team.",
       "openCta": "Learn more",
       "cards": {
@@ -93,12 +93,12 @@
     },
     "process": {
       "eyebrow": "Process",
-      "title": "How we work",
+      "title": "How I work",
       "subtitle": "Transparent at every step. You see savings weekly instead of waiting for a 'big reveal' in six months.",
       "steps": [
         {
           "title": "Process audit",
-          "desc": "30 minutes, free. We map where routine is eating your team and what it costs. Honest take on where AI helps and where it doesn't."
+          "desc": "30 minutes, free. I map where routine is eating your team and what it costs. Honest take on where AI helps and where it doesn't."
         },
         {
           "title": "Proposal with a number",
@@ -106,11 +106,11 @@
         },
         {
           "title": "Ship in 2-4 weeks",
-          "desc": "Weekly demos. You test on real customers, give feedback, we polish. No surprises at the end."
+          "desc": "Weekly demos. You test on real customers, give feedback, I polish. No surprises at the end."
         },
         {
           "title": "Gradual rollout",
-          "desc": "5% traffic → 30% → 100%. We monitor quality, human-in-the-loop on complex cases. Your team learns to operate."
+          "desc": "5% traffic → 30% → 100%. I monitor quality, human-in-the-loop on complex cases. Your team learns to operate."
         },
         {
           "title": "Scale",
@@ -120,8 +120,8 @@
     },
     "proof": {
       "eyebrow": "Specifics, not promises",
-      "title": "What we actually automate in real businesses",
-      "subtitle": "Typical results from our clients. Numbers are project averages — exact savings depend on your business (we calculate during the audit).",
+      "title": "What I actually automate in real businesses",
+      "subtitle": "Typical results from my clients. Numbers are project averages — exact savings depend on your business (I calculate during the audit).",
       "cases": {
         "support": {
           "title": "AI Support Agent",
@@ -153,7 +153,7 @@
     "ecosystem": {
       "eyebrow": "More than code",
       "title": "Need more than just automation?",
-      "subtitle": "NLO Coding is part of a five-product AI ecosystem. Strategy, brand, content, finance — all for your business, under one roof. Engage us and you get access to everything.",
+      "subtitle": "NLO Coding is part of a five-product AI ecosystem. Strategy, brand, content, finance — all for your business, under one roof. Engage me and you get access to everything.",
       "cta": "Explore the ecosystem"
     },
     "founder": {
@@ -174,11 +174,11 @@
         },
         {
           "q": "What if the AI messes up with a customer?",
-          "a": "Human-in-the-loop. AI handles 70-90% of simple requests. Anything complex or sensitive — it escalates to a human. We review 100% of responses in week one, a sample after. Errors are fixed immediately."
+          "a": "Human-in-the-loop. AI handles 70-90% of simple requests. Anything complex or sensitive — it escalates to a human. I review 100% of responses in week one, a sample after. Errors are fixed immediately."
         },
         {
           "q": "Won't I lose the human voice of my brand?",
-          "a": "AI responds in your tone — we feed it your old emails, tickets, conversations. Customers often don't realize they're talking to AI, because answers are fast and on-point. Anything complex — always a human."
+          "a": "AI responds in your tone — I feed it your old emails, tickets, conversations. Customers often don't realize they're talking to AI, because answers are fast and on-point. Anything complex — always a human."
         },
         {
           "q": "What do I tell the employees we're replacing?",
@@ -213,20 +213,20 @@
     },
     "form": {
       "title": "Form",
-      "desc": "Tell us briefly — we'll reply within 24 hours.",
+      "desc": "Tell me briefly — I'll reply within 24 hours.",
       "cta": "Fill in"
     },
     "calendly": {
       "title": "Discovery Call",
-      "desc": "30 minutes, free. We explore your idea honestly.",
+      "desc": "30 minutes, free. I explore your idea honestly.",
       "cta": "Book a slot"
     }
   },
   "leadForm": {
-    "title": "Tell us about the project",
-    "subtitle": "We'll reply within 24 hours via Telegram or email.",
+    "title": "Tell me about the project",
+    "subtitle": "I'll reply within 24 hours via Telegram or email.",
     "nameLabel": "Name",
-    "namePlaceholder": "How should we address you?",
+    "namePlaceholder": "How should I address you?",
     "emailLabel": "Email",
     "emailPlaceholder": "your@email.com",
     "telegramLabel": "Telegram (optional)",
@@ -252,8 +252,8 @@
     },
     "submit": "Send",
     "submitting": "Sending…",
-    "success": "Thanks! We'll reply within 24 hours.",
-    "error": "Something went wrong. Ping us on Telegram."
+    "success": "Thanks! I'll reply within 24 hours.",
+    "error": "Something went wrong. Ping me on Telegram."
   },
   "thankYou": {
     "badge": "Done",
@@ -263,18 +263,18 @@
     "nextSteps": [
       "I read your description and prepare questions",
       "I message you on Telegram or email to schedule a call",
-      "30 minutes free — we explore idea, scope, timeline",
-      "If we're a fit — I send a proposal with fixed milestones"
+      "30 minutes free — I explore your idea, scope, timeline",
+      "If it's a fit — I send a proposal with fixed milestones"
     ],
     "backCta": "Back to home",
-    "meanwhile": "Meanwhile — check what we've already built"
+    "meanwhile": "Meanwhile — check what I've already built"
   },
   "targetLanding": {
     "painTitle": "What's hurting right now",
     "includedTitle": "What's included in the package",
-    "stackTitle": "Tools we use",
+    "stackTitle": "Tools I use",
     "timelineTitle": "How it happens",
-    "proofTitle": "Our real-world experience",
+    "proofTitle": "My real-world experience",
     "faqTitle": "Common owner objections",
     "offer": "Save $3-8K/month on payroll. In 3 weeks — or your deposit back."
   },
@@ -349,11 +349,11 @@
       },
       {
         "q": "How do we measure MVP success?",
-        "a": "Discovery Call — we agree on metrics before start: first 10 paying users, N MAU, hypothesis validation, etc. It's not 'a product,' it's 'a product that answers a question.'"
+        "a": "Discovery Call — I agree on metrics with you before start: first 10 paying users, N MAU, hypothesis validation, etc. It's not 'a product,' it's 'a product that answers a question.'"
       },
       {
         "q": "What if we need to change things along the way?",
-        "a": "Scope is fixed — but within scope, you control priorities weekly. If you need something outside scope, we add it to Phase 2 (post-MVP) or discuss separately."
+        "a": "Scope is fixed — but within scope, you control priorities weekly. If you need something outside scope, I add it to Phase 2 (post-MVP) or we discuss separately."
       }
     ]
   },
@@ -366,7 +366,7 @@
       "badge": "For business owners",
       "title": "Your team is copying data",
       "titleAccent": "instead of making money",
-      "subtitle": "Every hour spent moving data from Excel to CRM is an hour your manager isn't selling. We automate routine in 2-3 weeks. Get 20-40 team hours back per week — or your deposit back.",
+      "subtitle": "Every hour spent moving data from Excel to CRM is an hour your manager isn't selling. I automate routine in 2-3 weeks. Get 20-40 team hours back per week — or your deposit back.",
       "cta": "Discuss my business"
     },
     "pains": [
@@ -385,7 +385,7 @@
     ],
     "included": [
       "Process audit (30 min free) + ROI calculation",
-      "Process map: what we automate, what stays with people",
+      "Process map: what I automate, what stays with people",
       "Workflows in n8n/Make/Zapier — or custom, if needed",
       "Integrations with CRM, accounting, email, Telegram, WhatsApp",
       "Real-time dashboard (replaces Excel reports)",
@@ -417,7 +417,7 @@
     "faq": [
       {
         "q": "Do we need a developer to maintain this?",
-        "a": "No. Automations on n8n/Make can be maintained by someone with no coding skills. We train one person on your team as the keymaster — 2-3 hours."
+        "a": "No. Automations on n8n/Make can be maintained by someone with no coding skills. I train one person on your team as the keymaster — 2-3 hours."
       },
       {
         "q": "What if our business process changes?",
@@ -429,7 +429,7 @@
       },
       {
         "q": "We have legacy software (old CRM, accounting) — does it work?",
-        "a": "Almost always yes. If it has an API or at least CSV export, we can integrate. Even Excel via OneDrive/Google Drive works. We check during the audit."
+        "a": "Almost always yes. If it has an API or at least CSV export, I can integrate. Even Excel via OneDrive/Google Drive works. I check during the audit."
       }
     ]
   },
@@ -494,7 +494,7 @@
     "faq": [
       {
         "q": "What if the AI says something wrong to a customer?",
-        "a": "Human-in-the-loop. Anything complex or unfamiliar gets escalated to a human. We monitor 100% of responses in week one, then a sample after. Errors are fixed immediately."
+        "a": "Human-in-the-loop. Anything complex or unfamiliar gets escalated to a human. I monitor 100% of responses in week one, then a sample after. Errors are fixed immediately."
       },
       {
         "q": "Won't customers be offended they're talking to a bot?",
@@ -502,7 +502,7 @@
       },
       {
         "q": "What if I want to replace a specific role?",
-        "a": "We start with an audit of that exact role: how many hours go where, what repeats, where errors happen. Typically 60-80% of one person's workload can be fully automated."
+        "a": "I start with an audit of that exact role: how many hours go where, what repeats, where errors happen. Typically 60-80% of one person's workload can be fully automated."
       },
       {
         "q": "How much does it cost to run an AI agent after launch?",
@@ -512,7 +512,7 @@
   },
   "about": {
     "meta": {
-      "title": "About NLO Coding — who we are and how we work",
+      "title": "About NLO Coding — who I am and how I work",
       "description": "Business architect + AI = process automation for business owners. 200+ consultations, Bottleneck methodology, 5 SaaS in a year."
     },
     "hero": {
@@ -524,8 +524,8 @@
     "philosophy": {
       "title": "Why this works",
       "p1": "Most IT companies don't understand their client's business. They ask for a spec — and you don't know what to write. I start with an audit: where's the money, where are the leaks, what can be automated — and only then do I write code.",
-      "p2": "That's why we don't drag projects for years, don't sell retainers with minimal results, don't hide configurations behind lock-in. Fast, transparent, all access is yours.",
-      "p3": "The Bottleneck methodology is my own framework. We find the narrowest point in your business — where the most revenue is slipping through — and fix that first. Not 'do everything at once,' but 'do one thing and see results within a week.'"
+      "p2": "That's why I don't drag projects for years, don't sell retainers with minimal results, don't hide configurations behind lock-in. Fast, transparent, all access is yours.",
+      "p3": "The Bottleneck methodology is my own framework. I find the narrowest point in your business — where the most revenue is slipping through — and fix that first. Not 'do everything at once,' but 'do one thing and see results within a week.'"
     },
     "founder": {
       "title": "Oleksii Nikolaichuk",
@@ -550,9 +550,9 @@
     },
     "hero": {
       "eyebrow": "Examples",
-      "title": "What exactly we automate",
+      "title": "What exactly I automate",
       "titleAccent": "and how much it saves",
-      "subtitle": "Typical scenarios for businesses with teams of 5-50 people. Exact savings depend on your business — we'll calculate during a free audit."
+      "subtitle": "Typical scenarios for businesses with teams of 5-50 people. Exact savings depend on your business — I'll calculate during a free audit."
     },
     "items": {
       "support": {

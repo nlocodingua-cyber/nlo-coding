@@ -13,8 +13,9 @@ interface AnimatedTextProps {
 }
 
 /**
- * Word-by-word fade+lift reveal — 21st.dev style.
- * Always rendered as <motion.span>; wrap in <h1>/<h2> etc at the call site.
+ * Word-by-word fade+lift reveal.
+ * Uses whileInView (not animate) to avoid SSG hydration race where
+ * the "visible" state fires before the client mounts.
  */
 export function AnimatedText({
   text,
@@ -45,7 +46,8 @@ export function AnimatedText({
     <motion.span
       variants={container}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, margin: "0px" }}
       className={cn("inline-block", className)}
     >
       {words.map((w, i) => (
