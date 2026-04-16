@@ -234,7 +234,7 @@ export function TargetPage({ namespace, slug, accent }: TargetPageProps) {
               <motion.li key={i} variants={fadeUp} transition={{ duration: 0.5 }}>
                 <Spotlight className="h-full rounded-2xl bg-white/[0.02] border border-white/10 p-7 backdrop-blur-sm hover:border-white/20 transition-all duration-300">
                   <div className={cn("text-[10px] font-mono uppercase tracking-[0.25em] mb-3", a.text)}>
-                    Step {(i + 1).toString().padStart(2, "0")}
+                    Крок {(i + 1).toString().padStart(2, "0")}
                   </div>
                   <h3 className="font-display text-lg font-semibold mb-2 tracking-tight">
                     {step.title}
