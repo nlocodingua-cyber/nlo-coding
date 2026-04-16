@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { AuroraBg } from "@/components/shared/AuroraBg";
 import { Magnetic } from "@/components/shared/Magnetic";
 import { Marquee } from "@/components/shared/Marquee";
-import { AnimatedText } from "@/components/shared/AnimatedText";
 import { NumberTicker } from "@/components/shared/NumberTicker";
 import { OrbitBadges } from "@/components/shared/OrbitBadges";
 import { TELEGRAM_URL } from "@/lib/constants";
@@ -53,8 +52,11 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Display headline — word-by-word blur reveal */}
-        <h1
+        {/* Display headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
           className="font-display font-bold text-balance mx-auto block"
           style={{
             fontSize: "clamp(2.75rem, 8vw, 6.5rem)",
@@ -63,19 +65,10 @@ export function Hero() {
             maxWidth: "18ch",
           }}
         >
-          <AnimatedText
-            text={t("titleLine1")}
-            className="display-title"
-            stagger={0.08}
-          />
+          <span className="display-title">{t("titleLine1")}</span>
           <br />
-          <AnimatedText
-            text={t("titleLine2")}
-            className="text-gradient"
-            stagger={0.08}
-            delay={0.3}
-          />
-        </h1>
+          <span className="text-gradient">{t("titleLine2")}</span>
+        </motion.h1>
 
         {/* Subtitle */}
         <motion.p
