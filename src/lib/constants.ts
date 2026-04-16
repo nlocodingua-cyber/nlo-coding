@@ -1,9 +1,8 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Rocket,
   Workflow,
   Bot,
-  Layers,
+  LayoutDashboard,
   Film,
   UserCircle2,
   Target,
@@ -17,7 +16,7 @@ import {
    NLO Coding — Services & Ecosystem Constants
    ═══════════════════════════════════════════ */
 
-export type ServiceKey = "mvp" | "automation" | "ai-agents" | "integrations";
+export type ServiceKey = "ai-agents" | "automation" | "systems";
 
 export interface Service {
   key: ServiceKey;
@@ -30,12 +29,16 @@ export interface Service {
   hasLanding: boolean;
 }
 
+/**
+ * Three service offerings for business owners who want to replace routine
+ * with AI and streamline operations (NOT for SaaS founders or dev teams).
+ */
 export const SERVICES: Service[] = [
   {
-    key: "mvp",
-    slug: "mvp",
-    icon: Rocket,
-    color: "cyan",
+    key: "ai-agents",
+    slug: "ai-agents",
+    icon: Bot,
+    color: "purple",
     hasLanding: true,
   },
   {
@@ -46,17 +49,10 @@ export const SERVICES: Service[] = [
     hasLanding: true,
   },
   {
-    key: "ai-agents",
-    slug: "ai-agents",
-    icon: Bot,
-    color: "purple",
-    hasLanding: true,
-  },
-  {
-    key: "integrations",
+    key: "systems",
     slug: "contact",
-    icon: Layers,
-    color: "orange",
+    icon: LayoutDashboard,
+    color: "cyan",
     hasLanding: false,
   },
 ];

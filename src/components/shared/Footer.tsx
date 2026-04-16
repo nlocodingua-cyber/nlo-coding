@@ -24,10 +24,9 @@ export function Footer() {
             {t("services")}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
-            <li><Link href="/mvp" className="text-foreground/70 hover:text-primary transition-colors">{t("serviceMvp")}</Link></li>
-            <li><Link href="/automation" className="text-foreground/70 hover:text-primary transition-colors">{t("serviceAutomation")}</Link></li>
             <li><Link href="/ai-agents" className="text-foreground/70 hover:text-primary transition-colors">{t("serviceAgents")}</Link></li>
-            <li><Link href="/contact" className="text-foreground/70 hover:text-primary transition-colors">{t("serviceIntegrations")}</Link></li>
+            <li><Link href="/automation" className="text-foreground/70 hover:text-primary transition-colors">{t("serviceAutomation")}</Link></li>
+            <li><Link href="/contact" className="text-foreground/70 hover:text-primary transition-colors">{t("serviceSystems")}</Link></li>
           </ul>
         </div>
 
