@@ -6,6 +6,7 @@ import { AuroraBg } from "@/components/shared/AuroraBg";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { Spotlight } from "@/components/shared/Spotlight";
 import { Magnetic } from "@/components/shared/Magnetic";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { LeadBlock } from "@/components/shared/LeadBlock";
 import { Button } from "@/components/ui/button";
 import { Check, ExternalLink, Send, ArrowRight, ChevronDown } from "lucide-react";
@@ -70,13 +71,9 @@ export function TargetPage({ namespace, slug, accent }: TargetPageProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className={cn(
-              "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-[0.25em] mb-7 border backdrop-blur-md",
-              a.bg, a.text, a.border
-            )}
+            className="flex justify-center mb-7"
           >
-            <span className={cn("size-1 rounded-full animate-pulse", a.text.replace("text-", "bg-"))} />
-            {t("hero.badge")}
+            <Eyebrow>{t("hero.badge")}</Eyebrow>
           </motion.div>
 
           <motion.h1

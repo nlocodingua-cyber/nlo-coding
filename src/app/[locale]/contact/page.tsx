@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Nav } from "@/components/shared/Nav";
 import { Footer } from "@/components/shared/Footer";
 import { AuroraBg } from "@/components/shared/AuroraBg";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { LeadBlock } from "@/components/shared/LeadBlock";
 import { LeadForm } from "@/components/shared/LeadForm";
 import type { Metadata } from "next";
@@ -46,10 +47,7 @@ function ContactHero() {
       <div className="absolute inset-0 bg-dot-grid opacity-60" aria-hidden="true" />
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-mono uppercase tracking-[0.25em] text-foreground/80 mb-7">
-          <span className="size-1 rounded-full bg-primary" />
-          {t("eyebrow")}
-        </div>
+        <Eyebrow className="mb-8">{t("eyebrow")}</Eyebrow>
         <h1
           className="font-display font-bold text-balance mx-auto"
           style={{

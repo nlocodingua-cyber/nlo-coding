@@ -4,8 +4,9 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/shared/Magnetic";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { NLO_ECOSYSTEM_URL, NLO_PRODUCTS } from "@/lib/constants";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function EcosystemLink() {
   const t = useTranslations("landing.ecosystem");
@@ -30,10 +31,7 @@ export function EcosystemLink() {
           />
 
           <div className="relative">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--neon-purple)]/30 bg-[var(--neon-purple)]/10 text-[10px] font-mono uppercase tracking-[0.25em] text-[var(--neon-purple)] mb-6">
-              <Sparkles className="size-3" />
-              {t("eyebrow")}
-            </div>
+            <Eyebrow className="mb-7">{t("eyebrow")}</Eyebrow>
 
             <h2
               className="font-display font-bold mb-5 text-balance display-title mx-auto"

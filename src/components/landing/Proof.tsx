@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { Spotlight } from "@/components/shared/Spotlight";
+import { TiltCard } from "@/components/shared/TiltCard";
 import { NLO_PRODUCTS } from "@/lib/constants";
 import { ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,12 +26,9 @@ const fadeUp = {
 export function Proof() {
   const t = useTranslations("landing.proof");
 
-  const featured = NLO_PRODUCTS[0]; // Platform — featured with border-beam
-  const rest = NLO_PRODUCTS.slice(1);
-
   return (
     <section id="cases-proof" className="relative py-28 sm:py-36">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow={t("eyebrow")}
           title={t("title")}
@@ -41,26 +39,19 @@ export function Proof() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ staggerChildren: 0.07 }}
-          className="grid md:grid-cols-6 gap-5 mt-20"
+          transition={{ staggerChildren: 0.08 }}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mt-20"
         >
-          {/* Featured card — spans 2 rows on md+ with border-beam */}
-          <motion.div
-            variants={fadeUp}
-            transition={{ duration: 0.6 }}
-            className="md:col-span-3 md:row-span-2"
-          >
-            <ProductCard product={featured} featured />
-          </motion.div>
-
-          {rest.map((p) => (
+          {NLO_PRODUCTS.map((p) => (
             <motion.div
               key={p.key}
               variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-3"
+              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="h-full"
             >
-              <ProductCard product={p} />
+              <TiltCard maxTilt={6} className="h-full rounded-2xl">
+                <ProductCard product={p} />
+              </TiltCard>
             </motion.div>
           ))}
         </motion.div>
@@ -69,13 +60,7 @@ export function Proof() {
   );
 }
 
-function ProductCard({
-  product,
-  featured,
-}: {
-  product: (typeof NLO_PRODUCTS)[number];
-  featured?: boolean;
-}) {
+function ProductCard({ product }: { product: (typeof NLO_PRODUCTS)[number] }) {
   const t = useTranslations("landing.proof");
   const Icon = product.icon;
   const color = colorMap[product.color];
@@ -86,44 +71,34 @@ function ProductCard({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group relative block rounded-2xl bg-white/[0.02] border border-white/10 overflow-hidden transition-all duration-300 h-full",
-        "hover:border-white/20 hover:-translate-y-1",
-        featured && "border-beam"
+        "group relative block h-full rounded-2xl bg-white/[0.02] border border-white/10 overflow-hidden transition-all duration-300",
+        "hover:border-white/25"
       )}
     >
-      <Spotlight className={cn("h-full", featured ? "p-10 md:p-12" : "p-7")}>
-        <div className="relative flex flex-col h-full">
-          <div className="flex items-start justify-between mb-5">
-            <div className={cn(
-              "inline-flex items-center justify-center rounded-xl border",
-              color.bg, color.text, color.border,
-              featured ? "size-14" : "size-11"
-            )}>
-              <Icon className={featured ? "size-6" : "size-5"} />
-            </div>
-            <ExternalLink className="size-4 text-foreground-muted group-hover:text-primary transition-colors" />
-          </div>
-
-          <h3 className={cn(
-            "font-display font-semibold mb-3 tracking-tight",
-            color.text,
-            featured ? "text-3xl md:text-4xl" : "text-xl"
-          )}>
-            {product.name}
-          </h3>
-
-          <p className={cn(
-            "text-foreground/65 leading-relaxed flex-1",
-            featured ? "text-base md:text-lg" : "text-[14px]"
-          )}>
-            {t(`products.${product.key}`)}
-          </p>
-
+      <Spotlight className="h-full p-6 flex flex-col">
+        <div className="flex items-start justify-between mb-5">
           <div className={cn(
-            "mt-6 text-[10px] font-mono uppercase tracking-[0.25em] text-foreground-muted group-hover:text-primary transition-colors"
+            "inline-flex items-center justify-center size-10 rounded-xl border",
+            color.bg, color.text, color.border
           )}>
-            {t("visitCta")} →
+            <Icon className="size-5" />
           </div>
+          <ExternalLink className="size-3.5 text-foreground-muted group-hover:text-primary transition-colors" />
+        </div>
+
+        <h3 className={cn(
+          "font-display text-lg font-semibold mb-2 tracking-tight",
+          color.text
+        )}>
+          {product.name}
+        </h3>
+
+        <p className="text-[13px] text-foreground/65 leading-relaxed flex-1">
+          {t(`products.${product.key}`)}
+        </p>
+
+        <div className="mt-5 text-[10px] font-mono uppercase tracking-[0.25em] text-foreground-muted group-hover:text-primary transition-colors">
+          {t("visitCta")} →
         </div>
       </Spotlight>
     </a>

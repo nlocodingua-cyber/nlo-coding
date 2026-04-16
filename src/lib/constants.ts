@@ -11,6 +11,8 @@ import {
   Brain,
 } from "lucide-react";
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 /* ═══════════════════════════════════════════
    NLO Coding — Services & Ecosystem Constants
    ═══════════════════════════════════════════ */
@@ -73,14 +75,12 @@ export interface Product {
   icon: LucideIcon;
 }
 
+/**
+ * 5 NLO SaaS продуктів, які показуємо у Proof/Cases секціях.
+ * NLO Platform свідомо виключено — це AI agent meta-platform, що керує
+ * розробкою інших продуктів (частина інфраструктури NLO Coding, не окремий кейс).
+ */
 export const NLO_PRODUCTS: Product[] = [
-  {
-    key: "platform",
-    name: "NLO Platform",
-    url: "https://nloplatform.com",
-    color: "cyan",
-    icon: Bot,
-  },
   {
     key: "studio",
     name: "NLO Studio",

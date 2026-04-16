@@ -4,6 +4,7 @@ import { Footer } from "@/components/shared/Footer";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { AuroraBg } from "@/components/shared/AuroraBg";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Spotlight } from "@/components/shared/Spotlight";
 import { NLO_PRODUCTS } from "@/lib/constants";
 import { Check, ArrowLeft, ExternalLink } from "lucide-react";
@@ -49,10 +50,12 @@ function ThankYouHero() {
       <div className="absolute inset-0 bg-dot-grid opacity-60" aria-hidden="true" />
 
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-[10px] font-mono uppercase tracking-[0.25em] text-primary mb-7 backdrop-blur-md">
-          <Check className="size-3.5" />
-          {t("badge")}
-        </div>
+        <Eyebrow className="mb-7">
+          <span className="inline-flex items-center gap-1.5">
+            <Check className="size-3.5" />
+            {t("badge")}
+          </span>
+        </Eyebrow>
         <h1
           className="font-display font-bold text-balance mx-auto mb-6"
           style={{

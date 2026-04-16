@@ -23,17 +23,23 @@
     "contact": "Contact",
     "contactPage": "Get in touch",
     "about": "About",
-    "builtBy": "Built by Alex Balaba · Brand Exorcist"
+    "builtBy": "Built by Alex · Brand Exorcist"
   },
   "landing": {
     "hero": {
       "badge": "Vibe Coding · NoCode · AI",
-      "titleLine1": "Ship legendary SaaS",
+      "titleLine1": "Legendary SaaS",
       "titleLine2": "in weeks, not years",
       "subtitle": "Vibe Coding + NoCode/LowCode/OpenAI tooling = fast, high-quality, affordable delivery. From MVP to AI agents that replace entire departments.",
       "ctaPrimary": "Start a project",
       "ctaSecondary": "See our work",
-      "hint": "Scroll to see how it works"
+      "hint": "Scroll to see how it works",
+      "stats": {
+        "saas": "SaaS shipped",
+        "consultations": "consultations",
+        "years": "years experience",
+        "satisfied": "satisfied"
+      }
     },
     "problem": {
       "eyebrow": "Honestly",
@@ -139,9 +145,9 @@
     },
     "founder": {
       "eyebrow": "Who's building",
-      "title": "Alex Balaba",
-      "subtitle": "10+ years in development and branding. Founder of six SaaS products in NLO Ecosystem. Author of Brand Exorcist — a business consulting practice.",
-      "p": "I write the code myself and coordinate a team of humans-with-AI. Every project is a partnership, not a 'handed to the PM and forgot' situation. I'm personally accountable for the outcome.",
+      "title": "Oleksii — Brand Exorcist",
+      "subtitle": "12+ years in marketing, sales, and consulting. 200+ one-on-one consultations, 95% satisfied clients. Author of the Bottleneck methodology. Founder of Sales Titans and NLO Ecosystem — 5 AI-powered SaaS shipped via Vibe Coding.",
+      "p": "I'm a business architect and I work as a partner, not a contractor. I write the code myself, coordinate AI agents, run every project personally. Because I've refunded enough client money after unreliable devs disappeared mid-project.",
       "cta": "More about me",
       "exorcistCta": "Brand Exorcist ↗"
     },
@@ -504,10 +510,10 @@
       "p3": "Vibe Coding is our tool, not our ideology. AI accelerates where it makes sense: code gen, refactoring, research, tests. But architecture, decisions, and critical paths — humans with taste."
     },
     "founder": {
-      "title": "Alex Balaba — founder",
-      "p1": "Started in marketing and branding 10+ years ago. Path from agency consultant to founder of Brand Exorcist — a consultancy for building effective business systems.",
-      "p2": "In 2024 started experimenting with AI-accelerated development. In a year shipped six SaaS products (NLO Platform, Studio, Strategy, Finance, Brand, Brain) — each solving a real founder problem.",
-      "p3": "NLO Coding is a natural extension: bring the same approach to client work. I personally coordinate every project and write the key code — no handing off to a PM, no hiding behind a team.",
+      "title": "Oleksii Nikolaichuk",
+      "p1": "12+ years of journey: sales rep → marketer → C-level (CMO, COO, R&D director) → own consultancy Bottle Neck → Sales Titans (sales team as a service) → Brand Exorcist (personal consulting practice). 200+ one-on-one consultations, 95% satisfied clients.",
+      "p2": "During COVID built 20-30+ websites with no programmers and mastered 80+ no-code tools. Author of the Bottleneck methodology (business bottleneck diagnosis) and the signature strategic session — 6 hours of work replacing months with an agency.",
+      "p3": "In 2024 started experimenting with AI-accelerated development — n8n → Claude Code → Vibe Coding. In 2 months shipped 5 SaaS products in the NLO Ecosystem. NLO Coding is the natural extension: apply the same approach to client work. I write the code myself, run projects as a partner. Currently based in Setúbal, Portugal.",
       "exorcistCta": "Read more on Brand Exorcist ↗"
     },
     "ecosystem": {

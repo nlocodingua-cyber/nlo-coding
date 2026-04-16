@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { Magnetic } from "@/components/shared/Magnetic";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { BRAND_EXORCIST_URL } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 
@@ -20,13 +21,10 @@ export function FounderBlock() {
         transition={{ duration: 0.7 }}
         className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-[10px] font-mono uppercase tracking-[0.25em] text-foreground/80 mb-6">
-          <span className="size-1 rounded-full bg-primary" aria-hidden="true" />
-          {t("eyebrow")}
-        </div>
+        <Eyebrow className="mb-7">{t("eyebrow")}</Eyebrow>
 
         <h2
-          className="font-display font-bold text-balance mb-5"
+          className="font-display font-bold text-balance mb-6"
           style={{
             fontSize: "clamp(2rem, 5vw, 3.5rem)",
             lineHeight: 1.02,
