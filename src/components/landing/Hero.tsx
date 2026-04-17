@@ -68,6 +68,8 @@ export function Hero() {
           <span className="display-title">{t("titleLine1")}</span>
           <br />
           <span className="text-gradient">{t("titleLine2")}</span>
+          <br />
+          <span className="text-gradient">{t("titleLine3")}</span>
         </motion.h1>
 
         {/* Subtitle */}
