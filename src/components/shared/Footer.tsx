@@ -20,7 +20,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm text-foreground/65 mb-4">
+          <h4 className="text-sm font-semibold text-foreground/90 mb-4">
             {t("services")}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
@@ -31,7 +31,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm text-foreground/65 mb-4">
+          <h4 className="text-sm font-semibold text-foreground/90 mb-4">
             {t("ecosystem")}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm text-foreground/65 mb-4">
+          <h4 className="text-sm font-semibold text-foreground/90 mb-4">
             {t("contact")}
           </h4>
           <ul className="space-y-2.5 text-[13px]">
