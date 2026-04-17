@@ -92,8 +92,15 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-[11px] font-mono uppercase tracking-[0.2em] text-foreground-muted text-center">
-          © {year} · NLO Coding · {t("builtBy")}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-[13px] text-foreground-muted">
+            © {year} NLO Coding · {t("builtBy")}
+          </div>
+          <div className="flex items-center gap-4 text-[13px] text-foreground/50">
+            <Link href="/privacy" className="hover:text-foreground/80 transition-colors">{t("privacy")}</Link>
+            <Link href="/cookies" className="hover:text-foreground/80 transition-colors">{t("cookies")}</Link>
+            <Link href="/terms" className="hover:text-foreground/80 transition-colors">{t("terms")}</Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -22,7 +22,10 @@
     "contact": "Contact",
     "contactPage": "Get in touch",
     "about": "About me",
-    "builtBy": "Brand Exorcist"
+    "builtBy": "Brand Exorcist",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "terms": "Terms"
   },
   "landing": {
     "hero": {
@@ -607,6 +610,109 @@
       "eyebrow": "Contact",
       "title": "Three ways to start",
       "subtitle": "Pick what works. All lead to the same place — a direct line to Alex."
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How your data is collected, used, and protected on nlocoding.com",
+      "lastUpdated": "April 16, 2026",
+      "sections": [
+        {
+          "heading": "Who is responsible for your data",
+          "body": "The data controller is Oleksii Nikolaichuk (Brand Exorcist), a sole proprietor based in Portugal. You can reach me via Telegram: @lex36."
+        },
+        {
+          "heading": "What data I collect",
+          "body": "Through the contact form on this website, I may collect: your name, email address, Telegram handle (optional), service type, project description, and budget (optional). Technical data is also collected automatically: IP address, browser type, landing page, and UTM parameters."
+        },
+        {
+          "heading": "Why I collect it",
+          "body": "Your data is used to: respond to your inquiry, prepare a tailored proposal, contact you through your preferred channel, and improve the website and quality of service."
+        },
+        {
+          "heading": "Legal basis",
+          "body": "Data processing is carried out in accordance with GDPR: Article 6(1)(b) — performance of a contract or taking steps at the request of the data subject prior to entering into a contract (pre-contractual measures); Article 6(1)(f) — legitimate interest (service improvement and website analytics)."
+        },
+        {
+          "heading": "Where data is stored",
+          "body": "Data is stored in Supabase (EU region, Frankfurt) and on Vercel servers (EU / global CDN). Personal data is not transferred outside the European Union without appropriate legal safeguards."
+        },
+        {
+          "heading": "How long I keep it",
+          "body": "Data submitted through the contact form is retained for 2 years after the last point of contact, then deleted. Technical logs (IP, browser) are retained for up to 90 days."
+        },
+        {
+          "heading": "Your rights",
+          "body": "Under the GDPR, you have the right to: access your data, rectify inaccurate data, erase your data, restrict processing, data portability, and object to processing. To exercise any of these rights, contact me on Telegram: @lex36."
+        },
+        {
+          "heading": "Changes to this policy",
+          "body": "I may update this privacy policy from time to time. The date of the last update is always shown at the top of this page. I recommend reviewing this page periodically."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookie Policy",
+      "description": "What cookies nlocoding.com uses and why",
+      "lastUpdated": "April 16, 2026",
+      "sections": [
+        {
+          "heading": "What are cookies",
+          "body": "Cookies are small text files stored in your browser when you visit a website. They help the site function properly and remember your preferences."
+        },
+        {
+          "heading": "What cookies I use",
+          "body": "Essential: NEXT_LOCALE — stores your language preference, session cookie (deleted when you close the browser). Analytics: Vercel Analytics — collects anonymized visit statistics, contains no personal data. Third-party: Calendly — if you open the booking widget, Calendly may set its own cookies."
+        },
+        {
+          "heading": "Third-party cookies",
+          "body": "Calendly may set cookies in accordance with their own privacy policy. I do not control these cookies. I recommend reviewing Calendly's policy if you use the booking feature."
+        },
+        {
+          "heading": "How to manage cookies",
+          "body": "You can disable or delete cookies through your browser settings. Instructions for popular browsers: Chrome — Settings → Privacy and Security → Cookies; Firefox — Settings → Privacy & Security → Cookies; Safari — Preferences → Privacy → Cookies. Please note: disabling essential cookies may affect how the site works."
+        },
+        {
+          "heading": "Changes",
+          "body": "I may update this cookie policy as needed. The current version is always available on this page."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "description": "Rules for using the nlocoding.com website",
+      "lastUpdated": "April 16, 2026",
+      "sections": [
+        {
+          "heading": "General",
+          "body": "The website nlocoding.com is owned by Oleksii Nikolaichuk (Brand Exorcist), a sole proprietor registered in Portugal. By using this website, you agree to these terms of use. If you do not agree, please stop using the website."
+        },
+        {
+          "heading": "Services",
+          "body": "The information on this website describes the services offered and does not constitute a public offer. Specific terms of engagement, scope of work, timelines, and pricing are defined in an individual proposal agreed upon with each client separately."
+        },
+        {
+          "heading": "Intellectual property",
+          "body": "All website content — text, design, code, graphics, and logos — belongs to NLO Coding / Brand Exorcist and is protected by copyright law. Copying, distributing, or reproducing any part of this content without written permission is prohibited."
+        },
+        {
+          "heading": "Client code ownership",
+          "body": "Code created for a client as part of a project is transferred to the client's full ownership upon payment of the corresponding project milestone. The client receives all rights to use, modify, and distribute their code."
+        },
+        {
+          "heading": "Liability",
+          "body": "Information on this website is provided \"as is.\" I do not guarantee specific financial outcomes from implementing automations or AI solutions. Figures and examples on the site represent typical project results and are not guaranteed outcomes for every individual case."
+        },
+        {
+          "heading": "Privacy",
+          "body": "Personal data is processed in accordance with the Privacy Policy, which is an integral part of these terms of use."
+        },
+        {
+          "heading": "Changes",
+          "body": "I reserve the right to update these terms of use. The current version is always available on this page. By continuing to use the website after changes are made, you accept the updated terms."
+        }
+      ]
     }
   }
 }
