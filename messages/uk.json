@@ -322,7 +322,16 @@
       "Документація + onboarding команди",
       "2 тижні безкоштовної підтримки"
     ],
-    "stack": ["Next.js 16", "TypeScript", "Tailwind CSS", "Supabase", "Stripe", "Claude API", "Vercel", "PostHog"],
+    "stack": [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Stripe",
+      "Claude API",
+      "Vercel",
+      "PostHog"
+    ],
     "timeline": [
       {
         "title": "Тиждень 1",
@@ -398,7 +407,16 @@
       "Документація: що робити, коли щось зламалось",
       "2 тижні моніторингу безкоштовно"
     ],
-    "stack": ["n8n", "Make", "Zapier", "Python", "Supabase", "Airtable", "Telegram API", "WhatsApp Business"],
+    "stack": [
+      "n8n",
+      "Make",
+      "Zapier",
+      "Python",
+      "Supabase",
+      "Airtable",
+      "Telegram API",
+      "WhatsApp Business"
+    ],
     "timeline": [
       {
         "title": "Тиждень 1",
@@ -475,7 +493,15 @@
       "Навчання команди: як працювати з AI-колегою",
       "2 тижні підтримки з щоденним моніторингом"
     ],
-    "stack": ["Claude API", "OpenAI API", "n8n", "Supabase", "Telegram Bot API", "WhatsApp Business", "Voiceflow"],
+    "stack": [
+      "Claude API",
+      "OpenAI API",
+      "n8n",
+      "Supabase",
+      "Telegram Bot API",
+      "WhatsApp Business",
+      "Voiceflow"
+    ],
     "timeline": [
       {
         "title": "Тиждень 1",
@@ -713,6 +739,59 @@
           "body": "Я залишаю за собою право оновлювати ці умови використання. Актуальна версія завжди доступна на цій сторінці. Продовжуючи користуватись сайтом після внесення змін, ти приймаєш оновлені умови."
         }
       ]
+    }
+  },
+  "booking": {
+    "meta": {
+      "title": "Записатись на зустріч — NLO Coding",
+      "description": "Вибери зручний час для консультації, менторингу або аудиту проєкту."
+    },
+    "steps": {
+      "service": "Обери формат зустрічі",
+      "datetime": "Вибери дату і час",
+      "contact": "Твої контакти"
+    },
+    "types": {
+      "consultation": {
+        "eyebrow": "Безкоштовно",
+        "name": "Консультація",
+        "desc": "Розбираємо твій запит, визначаємо проблему і намічаємо план дій."
+      },
+      "mentoring": {
+        "eyebrow": "Менторинг",
+        "name": "Менторинг 1:1",
+        "desc": "Регулярна сесія: архітектура, код, продукт, кар'єра — залежно від твоїх цілей."
+      },
+      "audit": {
+        "eyebrow": "Аудит",
+        "name": "Аудит проєкту",
+        "desc": "Детальний розбір твого продукту або системи: технічний стек, вузькі місця, рекомендації."
+      }
+    },
+    "minutes": "хв",
+    "selectDate": "Вибери дату",
+    "noSlots": "Вільних слотів немає. Спробуй інший день.",
+    "next": "Далі",
+    "form": {
+      "name": "Ім'я",
+      "namePlaceholder": "Як тебе звати?",
+      "email": "Email",
+      "emailPlaceholder": "твій@email.com",
+      "note": "Нотатка (необов'язково)",
+      "notePlaceholder": "Коротко — що хочеш обговорити?",
+      "submit": "Забронювати зустріч",
+      "submitting": "Бронюємо…"
+    },
+    "done": {
+      "title": "Зустріч заброньована",
+      "subtitle": "Підтвердження і посилання на Google Meet надіслано на твій email.",
+      "meetLink": "Відкрити Google Meet",
+      "email": "Перевір пошту — там деталі зустрічі."
+    },
+    "errors": {
+      "slots": "Не вдалося завантажити слоти. Спробуй ще раз.",
+      "fields": "Заповни ім'я та email.",
+      "create": "Не вдалося забронювати. Спробуй ще раз."
     }
   }
 }

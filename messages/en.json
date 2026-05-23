@@ -322,7 +322,16 @@
       "Documentation + team onboarding",
       "2 weeks of free post-launch support"
     ],
-    "stack": ["Next.js 16", "TypeScript", "Tailwind CSS", "Supabase", "Stripe", "Claude API", "Vercel", "PostHog"],
+    "stack": [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Stripe",
+      "Claude API",
+      "Vercel",
+      "PostHog"
+    ],
     "timeline": [
       {
         "title": "Week 1",
@@ -398,7 +407,16 @@
       "Documentation: what to do when something breaks",
       "2 weeks of free monitoring"
     ],
-    "stack": ["n8n", "Make", "Zapier", "Python", "Supabase", "Airtable", "Telegram API", "WhatsApp Business"],
+    "stack": [
+      "n8n",
+      "Make",
+      "Zapier",
+      "Python",
+      "Supabase",
+      "Airtable",
+      "Telegram API",
+      "WhatsApp Business"
+    ],
     "timeline": [
       {
         "title": "Week 1",
@@ -475,7 +493,15 @@
       "Team training: how to work alongside an AI colleague",
       "2 weeks of support with daily monitoring"
     ],
-    "stack": ["Claude API", "OpenAI API", "n8n", "Supabase", "Telegram Bot API", "WhatsApp Business", "Voiceflow"],
+    "stack": [
+      "Claude API",
+      "OpenAI API",
+      "n8n",
+      "Supabase",
+      "Telegram Bot API",
+      "WhatsApp Business",
+      "Voiceflow"
+    ],
     "timeline": [
       {
         "title": "Week 1",
@@ -713,6 +739,59 @@
           "body": "I reserve the right to update these terms of use. The current version is always available on this page. By continuing to use the website after changes are made, you accept the updated terms."
         }
       ]
+    }
+  },
+  "booking": {
+    "meta": {
+      "title": "Book a Meeting — NLO Coding",
+      "description": "Choose a convenient time for a consultation, mentoring, or project audit."
+    },
+    "steps": {
+      "service": "Choose meeting type",
+      "datetime": "Pick a date & time",
+      "contact": "Your details"
+    },
+    "types": {
+      "consultation": {
+        "eyebrow": "Free",
+        "name": "Consultation",
+        "desc": "We'll clarify your request, define the problem, and outline next steps."
+      },
+      "mentoring": {
+        "eyebrow": "Mentoring",
+        "name": "1:1 Mentoring",
+        "desc": "A regular session on architecture, code, product, or career — based on your goals."
+      },
+      "audit": {
+        "eyebrow": "Audit",
+        "name": "Project Audit",
+        "desc": "In-depth review of your product or system: tech stack, bottlenecks, recommendations."
+      }
+    },
+    "minutes": "min",
+    "selectDate": "Select a date",
+    "noSlots": "No available slots. Try another day.",
+    "next": "Next",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "What's your name?",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "note": "Note (optional)",
+      "notePlaceholder": "Briefly — what do you want to discuss?",
+      "submit": "Book Meeting",
+      "submitting": "Booking…"
+    },
+    "done": {
+      "title": "Meeting Booked",
+      "subtitle": "Confirmation and Google Meet link sent to your email.",
+      "meetLink": "Open Google Meet",
+      "email": "Check your inbox — details are there."
+    },
+    "errors": {
+      "slots": "Failed to load slots. Please try again.",
+      "fields": "Please fill in name and email.",
+      "create": "Booking failed. Please try again."
     }
   }
 }
