@@ -12,25 +12,34 @@ const calendar = google.calendar({ version: "v3", auth });
 const CALENDAR_ID = "primary";
 const TZ = "Europe/Lisbon";
 
-function getLisbonOffset(date: Date): number {
-  const utc = new Date(date.toLocaleString("en-US", { timeZone: "UTC" }));
-  const lisbon = new Date(date.toLocaleString("en-US", { timeZone: TZ }));
-  return Math.round((lisbon.getTime() - utc.getTime()) / 3600000);
+// Returns Lisbon offset in minutes (e.g. 60 for UTC+1, 0 for UTC+0)
+function getLisbonOffsetMin(date: Date): number {
+  // "sv" locale gives "YYYY-MM-DD HH:MM:SS" — safe to parse as UTC fake
+  const lisbonStr = new Intl.DateTimeFormat("sv", {
+    timeZone: TZ,
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    hour12: false,
+  }).format(date).replace(" ", "T");
+  return (new Date(lisbonStr + "Z").getTime() - date.getTime()) / 60000;
 }
 
-function lisbonHourToUTC(dateStr: string, hour: number, minute = 0): Date {
-  const [y, m, d] = dateStr.split("-").map(Number);
-  const probe = new Date(Date.UTC(y, m - 1, d, hour, minute, 0));
-  const offset = getLisbonOffset(probe);
-  return new Date(probe.getTime() - offset * 3600000);
+// "2026-05-26", 10, 0 → UTC Date for 10:00 Lisbon
+function lisbonToUTC(dateStr: string, hour: number, minute = 0): Date {
+  // Start with naive UTC probe
+  const probe = new Date(`${dateStr}T${pad(hour)}:${pad(minute)}:00Z`);
+  const offsetMin = getLisbonOffsetMin(probe);
+  return new Date(probe.getTime() - offsetMin * 60000);
 }
+
+function pad(n: number) { return String(n).padStart(2, "0"); }
 
 export async function getAvailableSlots(
   dateStr: string,
   durationMinutes: number
 ): Promise<string[]> {
-  const dayStart = lisbonHourToUTC(dateStr, WORKING_START_HOUR);
-  const dayEnd = lisbonHourToUTC(dateStr, WORKING_END_HOUR);
+  const dayStart = lisbonToUTC(dateStr, WORKING_START_HOUR);
+  const dayEnd   = lisbonToUTC(dateStr, WORKING_END_HOUR);
 
   const { data } = await calendar.freebusy.query({
     requestBody: {
@@ -57,12 +66,11 @@ export async function getAvailableSlots(
 
     const overlaps = busy.some((b) => cursor < b.end && slotEnd > b.start);
     if (!overlaps && cursor > now) {
-      const label = cursor.toLocaleTimeString("uk-UA", {
-        timeZone: TZ,
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
+      // Format in Lisbon time — slot label client will send back
+      const offsetMin = getLisbonOffsetMin(cursor);
+      const lisbonMs = cursor.getTime() + offsetMin * 60000;
+      const lisbonDate = new Date(lisbonMs);
+      const label = `${pad(lisbonDate.getUTCHours())}:${pad(lisbonDate.getUTCMinutes())}`;
       slots.push(label);
     }
 
@@ -73,25 +81,18 @@ export async function getAvailableSlots(
 }
 
 export async function createBooking({
-  name,
-  email,
-  note,
-  dateStr,
-  timeStr,
-  durationMinutes,
-  meetingTypeId,
+  name, email, note, dateStr, timeStr, durationMinutes, meetingTypeId,
 }: {
-  name: string;
-  email: string;
-  note: string;
-  dateStr: string;
-  timeStr: string;
-  durationMinutes: number;
-  meetingTypeId: string;
+  name: string; email: string; note: string;
+  dateStr: string; timeStr: string;
+  durationMinutes: number; meetingTypeId: string;
 }): Promise<{ meetLink: string }> {
+  // Naive datetime + timeZone → Google interprets as Lisbon time. No manual conversion needed.
+  const startDT = `${dateStr}T${timeStr}:00`;
   const [h, m] = timeStr.split(":").map(Number);
-  const start = lisbonHourToUTC(dateStr, h, m);
-  const end = new Date(start.getTime() + durationMinutes * 60000);
+  const endH = h + Math.floor((m + durationMinutes) / 60);
+  const endM = (m + durationMinutes) % 60;
+  const endDT = `${dateStr}T${pad(endH)}:${pad(endM)}:00`;
 
   const { data } = await calendar.events.insert({
     calendarId: CALENDAR_ID,
@@ -100,8 +101,8 @@ export async function createBooking({
     requestBody: {
       summary: `NLO Coding — ${name}`,
       description: note || `Тип: ${meetingTypeId}`,
-      start: { dateTime: start.toISOString(), timeZone: TZ },
-      end: { dateTime: end.toISOString(), timeZone: TZ },
+      start: { dateTime: startDT, timeZone: TZ },
+      end:   { dateTime: endDT,   timeZone: TZ },
       attendees: [{ email }],
       conferenceData: {
         createRequest: {
