@@ -11,7 +11,7 @@ auth.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
 const calendar = google.calendar({ version: "v3", auth });
 const CALENDAR_ID = "primary";
 const TZ = "Europe/Lisbon";
-const ZOOM_URL = process.env.ZOOM_MEETING_URL ?? "https://us04web.zoom.us/j/9864070768?pwd=NldWVm1aRlRTUWQyRCtTbzkxVTFpdz09";
+const ZOOM_URL = (process.env.ZOOM_MEETING_URL ?? "https://us04web.zoom.us/j/9864070768?pwd=NldWVm1aRlRTUWQyRCtTbzkxVTFpdz09").trim();
 
 // Returns Lisbon offset in minutes (e.g. 60 for UTC+1, 0 for UTC+0)
 function getLisbonOffsetMin(date: Date): number {
