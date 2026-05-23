@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
       `Тип: ${type} · ${meetingType.duration} хв`,
       `📆 ${dateLabel}, ${time} (Lisbon)`,
       note ? `\n💬 ${note}` : "",
-      meetLink ? `\n🔗 <a href="${meetLink}">Google Meet</a>` : "",
+      meetLink ? `\n🔗 <a href="${meetLink}">Zoom</a>` : "",
     ].filter(Boolean).join("\n"));
 
     // Email to client (non-blocking)
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
         <li><b>Дата:</b> ${dateLabel}</li>
         <li><b>Час:</b> ${time} (Лісабон)</li>
         <li><b>Тривалість:</b> ${meetingType.duration} хв</li>
-        ${meetLink ? `<li><b>Google Meet:</b> <a href="${meetLink}">${meetLink}</a></li>` : ""}
+        ${meetLink ? `<li><b>Zoom:</b> <a href="${meetLink}">${meetLink}</a></li>` : ""}
       </ul>
       <p>Питання? Пиши на <a href="mailto:${OWNER_EMAIL}">${OWNER_EMAIL}</a></p>
     `);

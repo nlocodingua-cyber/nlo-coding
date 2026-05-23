@@ -784,8 +784,8 @@
     },
     "done": {
       "title": "Meeting Booked",
-      "subtitle": "Confirmation and Google Meet link sent to your email.",
-      "meetLink": "Open Google Meet",
+      "subtitle": "Confirmation and Zoom link sent to your email.",
+      "meetLink": "Open Zoom",
       "email": "Check your inbox — details are there."
     },
     "errors": {
