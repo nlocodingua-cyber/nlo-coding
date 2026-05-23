@@ -151,12 +151,12 @@ export function BookingFlow() {
             <button
               key={mt.id}
               onClick={() => { setSelectedType(mt); setStep("datetime"); }}
-              className="group text-left p-5 rounded-xl border border-[--border] bg-[--card] hover:border-cyan-400/40 hover:bg-cyan-400/[0.03] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-400/30"
+              className="group text-left p-5 rounded-xl border border-[--border] bg-[--card] hover:border-amber-400/40 hover:bg-amber-400/[0.03] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400/30"
             >
               <div className="text-xs font-mono uppercase tracking-widest text-[--foreground-muted] mb-2">
                 {t(`types.${mt.id}.eyebrow`)}
               </div>
-              <div className="font-semibold text-base text-[--foreground] mb-3 group-hover:text-cyan-300 transition-colors">
+              <div className="font-semibold text-base text-[--foreground] mb-3 group-hover:text-amber-300 transition-colors">
                 {t(`types.${mt.id}.name`)}
               </div>
               <div className="flex items-center gap-1.5 text-sm text-[--foreground-muted]">
@@ -190,7 +190,7 @@ export function BookingFlow() {
         {selectedType && (
           <div className="flex items-center gap-2 text-sm text-[--foreground-muted]">
             <Clock className="size-3.5" />
-            <span className="text-cyan-400 font-medium">{t(`types.${selectedType.id}.name`)}</span>
+            <span className="text-amber-400 font-medium">{t(`types.${selectedType.id}.name`)}</span>
             <span>·</span>
             <span>{selectedType.duration} {t("minutes")}</span>
           </div>
@@ -246,8 +246,8 @@ export function BookingFlow() {
                       disabled
                         ? "text-[--foreground-muted] opacity-30 cursor-not-allowed"
                         : isSelected
-                        ? "bg-cyan-400 text-[#06080f] font-semibold"
-                        : "hover:bg-cyan-400/10 hover:text-cyan-300 text-[--foreground]",
+                        ? "bg-amber-400 text-gray-900 font-semibold"
+                        : "hover:bg-amber-400/10 hover:text-amber-300 text-[--foreground]",
                     ].join(" ")}
                   >
                     {day}
@@ -266,7 +266,7 @@ export function BookingFlow() {
               </div>
             ) : loadingSlots ? (
               <div className="flex items-center justify-center min-h-[160px]">
-                <Loader2 className="size-5 animate-spin text-cyan-400" />
+                <Loader2 className="size-5 animate-spin text-amber-400" />
               </div>
             ) : slots.length === 0 ? (
               <div className="flex flex-col items-center justify-center min-h-[160px] text-[--foreground-muted] text-sm">
@@ -285,8 +285,8 @@ export function BookingFlow() {
                       className={[
                         "py-2 px-3 rounded-lg text-sm font-mono transition-all duration-150",
                         selectedSlot === slot
-                          ? "bg-cyan-400 text-[#06080f] font-semibold"
-                          : "border border-[--border] hover:border-cyan-400/40 hover:text-cyan-300",
+                          ? "bg-amber-400 text-gray-900 font-semibold"
+                          : "border border-[--border] hover:border-amber-400/40 hover:text-amber-300",
                       ].join(" ")}
                     >
                       {slot}
@@ -302,7 +302,7 @@ export function BookingFlow() {
           <Button
             disabled={!selectedDate || !selectedSlot}
             onClick={() => setStep("contact")}
-            className="animate-glow-pulse"
+            className="bg-amber-400 text-gray-900 hover:bg-amber-300"
           >
             {t("next")}
             <ChevronRight className="size-4" />
@@ -365,7 +365,7 @@ export function BookingFlow() {
             />
           </BookingField>
 
-          <Button type="submit" size="lg" disabled={submitting} className="w-full animate-glow-pulse">
+          <Button type="submit" size="lg" disabled={submitting} className="w-full bg-amber-400 text-gray-900 hover:bg-amber-300">
             {submitting ? (
               <><Loader2 className="size-4 animate-spin" />{t("form.submitting")}</>
             ) : (
@@ -380,7 +380,7 @@ export function BookingFlow() {
             padding: 0.625rem 0.875rem;
             font-size: 0.875rem;
             border-radius: 0.5rem;
-            background: rgba(0, 240, 255, 0.02);
+            background: rgba(251, 191, 36, 0.02);
             border: 1px solid var(--border);
             color: var(--foreground);
             transition: all 150ms ease;
@@ -388,9 +388,9 @@ export function BookingFlow() {
             font-family: inherit;
           }
           .booking-input:focus {
-            border-color: rgba(0, 240, 255, 0.4);
-            background: rgba(0, 240, 255, 0.04);
-            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.08);
+            border-color: rgba(251, 191, 36, 0.5);
+            background: rgba(251, 191, 36, 0.04);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
           }
           .booking-input::placeholder { color: var(--foreground-muted); }
         `}</style>
@@ -401,7 +401,7 @@ export function BookingFlow() {
   // ─── Step 4: Done ────────────────────────────────────────────────────────────
   return (
     <div className="text-center space-y-6 py-8">
-      <CheckCircle className="size-14 text-cyan-400 mx-auto" />
+      <CheckCircle className="size-14 text-amber-400 mx-auto" />
       <div>
         <h2 className="text-2xl font-semibold mb-2">{t("done.title")}</h2>
         <p className="text-[--foreground-muted] text-sm max-w-sm mx-auto">{t("done.subtitle")}</p>
@@ -411,7 +411,7 @@ export function BookingFlow() {
           href={meetLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/10 transition-colors text-sm"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-400/30 text-amber-300 hover:bg-amber-400/10 transition-colors text-sm"
         >
           <Video className="size-4" />
           {t("done.meetLink")}
@@ -431,7 +431,7 @@ function StepHeader({
 }) {
   return (
     <div className={noMargin ? "" : "mb-2"}>
-      <div className="text-xs font-mono uppercase tracking-widest text-cyan-400/60 mb-1">
+      <div className="text-xs font-mono uppercase tracking-widest text-amber-400/60 mb-1">
         {step} / {total}
       </div>
       <h2 className="text-xl font-semibold">{title}</h2>

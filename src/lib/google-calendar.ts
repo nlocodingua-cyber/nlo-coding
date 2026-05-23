@@ -46,6 +46,7 @@ export async function getAvailableSlots(
     end: new Date(b.end!),
   }));
 
+  const now = new Date();
   const slots: string[] = [];
   const cursor = new Date(dayStart);
 
@@ -54,8 +55,7 @@ export async function getAvailableSlots(
     if (slotEnd > dayEnd) break;
 
     const overlaps = busy.some((b) => cursor < b.end && slotEnd > b.start);
-    if (!overlaps) {
-      // Format as Lisbon time HH:MM
+    if (!overlaps && cursor > now) {
       const label = cursor.toLocaleTimeString("uk-UA", {
         timeZone: TZ,
         hour: "2-digit",

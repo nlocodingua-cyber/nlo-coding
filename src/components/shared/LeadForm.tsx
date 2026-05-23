@@ -139,9 +139,10 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
 
       <Button
         type="submit"
+        variant="secondary"
         size="lg"
         disabled={submitting}
-        className="w-full animate-glow-pulse"
+        className="w-full"
       >
         {submitting ? (
           <>
@@ -162,16 +163,16 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
           padding: 0.625rem 0.875rem;
           font-size: 0.875rem;
           border-radius: 0.5rem;
-          background: rgba(0, 240, 255, 0.02);
+          background: rgba(124, 58, 237, 0.02);
           border: 1px solid var(--border);
           color: var(--foreground);
           transition: all 150ms ease;
           outline: none;
         }
         .form-input:focus {
-          border-color: rgba(0, 240, 255, 0.4);
-          background: rgba(0, 240, 255, 0.04);
-          box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.08);
+          border-color: rgba(124, 58, 237, 0.5);
+          background: rgba(124, 58, 237, 0.04);
+          box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
         }
         .form-input::placeholder {
           color: var(--foreground-muted);
