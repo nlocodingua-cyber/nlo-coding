@@ -4,7 +4,6 @@ import { useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
-import { getSupabase, isSupabaseConfigured } from "@/lib/supabase/client";
 import { Send, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -51,18 +50,12 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
 
     setSubmitting(true);
     try {
-      if (!isSupabaseConfigured) {
-        // Dev / preview fallback — still redirect to thank-you
-        console.warn("[LeadForm] Supabase not configured; logging payload only", payload);
-        router.push("/thank-you");
-        return;
-      }
-      const supabase = getSupabase();
-      if (!supabase) throw new Error("Supabase client unavailable");
-
-      const { error } = await supabase.from("leads").insert(payload);
-      if (error) throw error;
-
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("API error");
       router.push("/thank-you");
     } catch (err) {
       console.error("[LeadForm]", err);

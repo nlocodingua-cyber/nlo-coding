@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
 import { Spotlight } from "@/components/shared/Spotlight";
-import { TELEGRAM_URL, CALENDLY_URL, telegramWithUtm } from "@/lib/constants";
+import { TELEGRAM_URL, telegramWithUtm } from "@/lib/constants";
 import { Send, FileText, CalendarClock, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -47,8 +47,8 @@ export function LeadBlock({ campaign = "main", className }: LeadBlockProps) {
     {
       key: "calendly" as const,
       icon: CalendarClock,
-      href: CALENDLY_URL,
-      external: true,
+      href: "/booking",
+      external: false,
       iconBg: "bg-[var(--chart-4)]/10 border-[var(--chart-4)]/30 text-[var(--chart-4)]",
       ctaColor: "text-[var(--chart-4)]",
       featured: false,

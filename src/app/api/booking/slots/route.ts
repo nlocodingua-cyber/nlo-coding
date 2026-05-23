@@ -32,7 +32,8 @@ export async function GET(req: NextRequest) {
     const slots = await getAvailableSlots(date, meetingType.duration);
     return NextResponse.json({ slots });
   } catch (err) {
-    console.error("[booking/slots]", err);
-    return NextResponse.json({ error: "Calendar error" }, { status: 500 });
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[booking/slots]", msg);
+    return NextResponse.json({ error: "Calendar error", detail: msg }, { status: 500 });
   }
 }
