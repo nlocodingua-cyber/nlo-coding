@@ -9,7 +9,7 @@ const auth = new google.auth.OAuth2(
 auth.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
 
 const calendar = google.calendar({ version: "v3", auth });
-const CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID!;
+const CALENDAR_ID = "primary";
 const TZ = "Europe/Lisbon";
 
 function getLisbonOffset(date: Date): number {
@@ -41,7 +41,8 @@ export async function getAvailableSlots(
     },
   });
 
-  const busy = (data.calendars?.[CALENDAR_ID]?.busy ?? []).map((b) => ({
+  const calData = Object.values(data.calendars ?? {})[0];
+  const busy = (calData?.busy ?? []).map((b) => ({
     start: new Date(b.start!),
     end: new Date(b.end!),
   }));
