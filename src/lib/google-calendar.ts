@@ -11,6 +11,7 @@ auth.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
 const calendar = google.calendar({ version: "v3", auth });
 const CALENDAR_ID = "primary";
 const TZ = "Europe/Lisbon";
+const ZOOM_URL = process.env.ZOOM_MEETING_URL ?? "https://us04web.zoom.us/j/9864070768?pwd=NldWVm1aRlRTUWQyRCtTbzkxVTFpdz09";
 
 // Returns Lisbon offset in minutes (e.g. 60 for UTC+1, 0 for UTC+0)
 function getLisbonOffsetMin(date: Date): number {
@@ -94,24 +95,20 @@ export async function createBooking({
   const endM = (m + durationMinutes) % 60;
   const endDT = `${dateStr}T${pad(endH)}:${pad(endM)}:00`;
 
-  const { data } = await calendar.events.insert({
+  const zoomLine = `Zoom: ${ZOOM_URL}`;
+  const description = [note, zoomLine].filter(Boolean).join("\n\n");
+
+  await calendar.events.insert({
     calendarId: CALENDAR_ID,
-    conferenceDataVersion: 1,
     sendUpdates: "all",
     requestBody: {
       summary: `NLO Coding — ${name}`,
-      description: note || `Тип: ${meetingTypeId}`,
+      description,
       start: { dateTime: startDT, timeZone: TZ },
       end:   { dateTime: endDT,   timeZone: TZ },
       attendees: [{ email }],
-      conferenceData: {
-        createRequest: {
-          requestId: `nlocoding-${Date.now()}`,
-          conferenceSolutionKey: { type: "hangoutsMeet" },
-        },
-      },
     },
   });
 
-  return { meetLink: data.hangoutLink ?? "" };
+  return { meetLink: ZOOM_URL };
 }
