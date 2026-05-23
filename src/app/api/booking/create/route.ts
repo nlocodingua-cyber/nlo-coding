@@ -56,19 +56,19 @@ export async function POST(req: NextRequest) {
       day: "numeric", month: "long", year: "numeric",
     });
 
-    // Telegram to owner (fire-and-forget)
-    sendTelegram([
-      `📅 <b>Нове бронювання — NLO Coding</b>`,
-      ``,
-      `<b>${name}</b> (${email})`,
-      `Тип: ${type} · ${meetingType.duration} хв`,
-      `📆 ${dateLabel}, ${time} (Lisbon)`,
-      note ? `\n💬 ${note}` : "",
-      meetLink ? `\n🔗 <a href="${meetLink}">Zoom</a>` : "",
-    ].filter(Boolean).join("\n"));
+    // Await both so Vercel doesn't kill them before they fire
+    await Promise.allSettled([
+      sendTelegram([
+        `📅 <b>Нове бронювання — NLO Coding</b>`,
+        ``,
+        `<b>${name}</b> (${email})`,
+        `Тип: ${type} · ${meetingType.duration} хв`,
+        `📆 ${dateLabel}, ${time} (Lisbon)`,
+        note ? `\n💬 ${note}` : "",
+        meetLink ? `\n🔗 <a href="${meetLink}">Zoom</a>` : "",
+      ].filter(Boolean).join("\n")),
 
-    // Email to client (non-blocking)
-    sendEmail(email, `Підтвердження зустрічі — NLO Coding`, `
+      sendEmail(email, `Підтвердження зустрічі — NLO Coding`, `
       <p>Привіт, ${name}!</p>
       <p>Твою зустріч заброньовано:</p>
       <ul>
@@ -78,7 +78,8 @@ export async function POST(req: NextRequest) {
         ${meetLink ? `<li><b>Zoom:</b> <a href="${meetLink}">${meetLink}</a></li>` : ""}
       </ul>
       <p>Питання? Пиши на <a href="mailto:${OWNER_EMAIL}">${OWNER_EMAIL}</a></p>
-    `);
+    `),
+    ]);
 
     return NextResponse.json({ success: true, meetLink });
   } catch (err) {
