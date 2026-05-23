@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   description:
     "Будуємо легендарні SaaS, бізнес-автоматизації та AI-агентів за тижні, не роки. Vibe Coding + NoCode/LowCode/OpenAI = швидка розробка, реальний результат.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://nlocoding.com"),
+  other: {
+    'google-adsense-account': 'ca-pub-5887884138759795',
+  },
 };
 
 export default function RootLayout({

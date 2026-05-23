@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Inter, JetBrains_Mono, Onest } from "next/font/google";
 import { Toaster } from "sonner";
 import { routing } from "@/i18n/routing";
+import Script from "next/script";
 
 
 const inter = Inter({
@@ -47,21 +48,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
-      <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887884138759795"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${onest.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-
-
-
-
 
 
         <NextIntlClientProvider messages={messages}>
@@ -78,8 +68,15 @@ export default async function LocaleLayout({
                 color: "#e2e8f0",
               },
             }}
-  
+          />
         </NextIntlClientProvider>
+        <Script
+          id="adsense-init"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5887884138759795"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
