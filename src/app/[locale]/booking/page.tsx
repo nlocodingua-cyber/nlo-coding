@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function BookingPage() {
   return (
     <main className="min-h-screen pt-28 pb-20 px-4">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <BookingFlow />
       </div>
     </main>
