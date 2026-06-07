@@ -34,7 +34,12 @@ const REDIRECT = "http://localhost:3333/callback";
 const SCOPES = ["https://www.googleapis.com/auth/calendar"];
 
 const oauth2 = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT);
-const authUrl = oauth2.generateAuthUrl({ access_type: "offline", scope: SCOPES, prompt: "consent" });
+const authUrl = oauth2.generateAuthUrl({
+  access_type: "offline",
+  scope: SCOPES,
+  prompt: "consent",
+  login_hint: "oleksiy.nikolaichuk@gmail.com",
+});
 
 // Localhost server to catch the redirect
 const server = createServer(async (req, res) => {

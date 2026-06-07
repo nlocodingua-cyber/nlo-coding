@@ -67,6 +67,9 @@ export function Nav() {
               </Link>
             )
           )}
+          <Link href="/blog" className="text-sm text-foreground/65 hover:text-foreground transition-colors">
+            Blog
+          </Link>
         </div>
 
         <div className="flex items-center gap-3">
@@ -111,6 +114,9 @@ export function Nav() {
                 </Link>
               )
             )}
+            <Link href="/blog" onClick={() => setOpen(false)} className="text-sm text-foreground/80 hover:text-primary py-1.5">
+              Blog
+            </Link>
             <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
               <LocaleSwitch />
               <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
