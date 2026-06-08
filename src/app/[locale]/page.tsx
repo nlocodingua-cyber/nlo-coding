@@ -7,7 +7,8 @@ import { Solution } from "@/components/landing/Solution";
 import { Services } from "@/components/landing/Services";
 import { Process } from "@/components/landing/Process";
 import { Proof } from "@/components/landing/Proof";
-import { EcosystemLink } from "@/components/landing/EcosystemLink";
+import { EcosystemSection } from "@/components/landing/EcosystemSection";
+import { BlogSection } from "@/components/landing/BlogSection";
 import { FounderBlock } from "@/components/landing/FounderBlock";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
@@ -30,9 +31,10 @@ export default async function HomePage({
         <Services />
         <Process />
         <Proof />
-        <EcosystemLink />
+        <EcosystemSection locale={locale} />
         <FounderBlock />
         <FAQ />
+        <BlogSection locale={locale} />
         <FinalCTA />
       </main>
       <Footer />
