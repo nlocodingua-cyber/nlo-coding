@@ -68,7 +68,7 @@ export function Nav() {
             )
           )}
           <Link href="/blog" className="text-sm text-foreground/65 hover:text-foreground transition-colors">
-            Blog
+            {t("blog")}
           </Link>
         </div>
 
@@ -115,7 +115,7 @@ export function Nav() {
               )
             )}
             <Link href="/blog" onClick={() => setOpen(false)} className="text-sm text-foreground/80 hover:text-primary py-1.5">
-              Blog
+              {t("blog")}
             </Link>
             <div className="flex items-center justify-between pt-3 border-t border-white/[0.06]">
               <LocaleSwitch />
