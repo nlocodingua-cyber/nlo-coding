@@ -44,7 +44,7 @@ export function Nav() {
           aria-label="NLO Coding"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.svg" alt="" width={240} height={200} className="h-8 w-auto transition-transform duration-200 hover:scale-105" />
+          <img src="/logo.svg" alt="" width={240} height={200} className="h-8 w-auto transition-transform duration-200 hover:scale-[3]" />
           <span>
             <span className="text-gradient-static">NLO</span>
             <span className="text-foreground/90"> Coding</span>
