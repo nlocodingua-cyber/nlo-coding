@@ -40,11 +40,15 @@ export function Nav() {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display font-bold text-lg tracking-tight"
+          className="flex items-center gap-2 font-display font-bold text-lg tracking-tight"
           aria-label="NLO Coding"
         >
-          <span className="text-gradient-static">NLO</span>
-          <span className="text-foreground/90"> Coding</span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo.svg" alt="" width={240} height={200} className="h-8 w-auto" />
+          <span>
+            <span className="text-gradient-static">NLO</span>
+            <span className="text-foreground/90"> Coding</span>
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
