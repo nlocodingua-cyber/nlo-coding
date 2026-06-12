@@ -153,8 +153,13 @@ function getDisplayDesc(article: Article, locale: Locale): string | null {
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export function BlogList({ articles, locale: rawLocale }: { articles: Article[]; locale: string }) {
+export function BlogList({ articles: rawArticles, locale: rawLocale }: { articles: Article[]; locale: string }) {
   const locale: Locale = rawLocale === "uk" ? "uk" : "en";
+  // Чистота мови: на не-en показуємо ЛИШЕ статті з повним перекладом цієї мови
+  // (інакше заголовок укр + опис анг — підміна на англ. оригінал). Без міксу.
+  const articles: Article[] = locale === "en"
+    ? rawArticles
+    : rawArticles.filter(a => !!(a.translations?.[locale]?.title && a.translations?.[locale]?.meta_description));
   const t = T[locale];
   const [activeTopic, setActiveTopic] = useState<string>(t.allFilter);
 
@@ -178,18 +183,23 @@ export function BlogList({ articles, locale: rawLocale }: { articles: Article[];
   return (
     <div style={{ minHeight: "100vh", background: "var(--bg, #0a0a0f)", color: "var(--text, #e2e8f0)" }}>
 
-      {/* ── Back to site ── */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 24px 0" }}>
-        <a href={`/${locale}`} style={{
-          display: "inline-flex", alignItems: "center", gap: 6,
-          color: "#64748b", textDecoration: "none", fontSize: 14,
-          transition: "color 0.15s",
-        }}
-          onMouseOver={e => (e.currentTarget as HTMLElement).style.color = "#94a3b8"}
-          onMouseOut={e => (e.currentTarget as HTMLElement).style.color = "#64748b"}
-        >
-          {t.backSite}
-        </a>
+      {/* ── Top bar: back to site (sticky) ── */}
+      <div style={{
+        position: "sticky", top: 0, zIndex: 50,
+        background: "rgba(10,11,15,0.82)",
+        backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+        borderBottom: "1px solid rgba(255,255,255,0.07)",
+      }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "12px 20px" }}>
+          <a href={`/${locale}`} style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            padding: "9px 16px", borderRadius: 999,
+            background: "var(--primary, #a855f7)", color: "#0b0b0f",
+            textDecoration: "none", fontSize: 16, fontWeight: 600,
+          }}>
+            {t.backSite}
+          </a>
+        </div>
       </div>
 
       {/* ── Header ── */}
@@ -377,7 +387,7 @@ function ArticleCard({ article, locale, t }: { article: Article; locale: Locale;
 
           {displayDesc && (
             <p style={{
-              fontSize: 13, color: "#64748b", lineHeight: 1.55,
+              fontSize: 15, color: "#94a3b8", lineHeight: 1.6,
               margin: "0 0 14px", flex: 1,
               display: "-webkit-box", WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical", overflow: "hidden",
@@ -388,7 +398,7 @@ function ArticleCard({ article, locale, t }: { article: Article; locale: Locale;
 
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
-            fontSize: 12, color: "#475569",
+            fontSize: 13, color: "#64748b",
             marginTop: "auto", paddingTop: 12,
             borderTop: "1px solid rgba(255,255,255,0.05)",
             flexWrap: "wrap",

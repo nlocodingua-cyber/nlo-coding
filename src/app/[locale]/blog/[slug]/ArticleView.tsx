@@ -261,6 +261,12 @@ const ARTICLE_STYLES = `
     font-size: 0.78em;
     opacity: 0.6;
   }
+  /* ── Mobile: single column, hide TOC sidebar ── */
+  @media (max-width: 860px) {
+    .article-layout { grid-template-columns: 1fr !important; gap: 0 !important; }
+    .article-toc { display: none !important; }
+    .article-body { font-size: 16px; }
+  }
 `;
 
 export function ArticleView({ article, headings, locale, slug, related, relatedHeading, previewMap, byline }: Props) {
@@ -293,46 +299,64 @@ export function ArticleView({ article, headings, locale, slug, related, relatedH
 
       <div style={{ minHeight: "100vh", background: "var(--bg, #0a0a0f)", color: "var(--text, #e2e8f0)" }}>
 
-        {/* ── Back to Blog + Locale Switcher ── */}
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 24px 0", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
-          <Link href={`/${locale}/blog`} style={{
-            display: "inline-flex", alignItems: "center", gap: 6,
-            color: "#64748b", textDecoration: "none", fontSize: 14,
-            transition: "color 0.15s",
-          }}>
-            {t.backBlog}
-          </Link>
-          {hasOtherLocale && (
-            <div style={{
-              display: "inline-flex",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              borderRadius: 8, overflow: "hidden",
-            }}>
-              {(["en", "uk"] as const).map(l => {
-                const active = l === locale;
-                return (
-                  <a
-                    key={l}
-                    href={`/${l}/blog/${slug}`}
-                    style={{
-                      display: "inline-flex", alignItems: "center",
-                      padding: "6px 14px",
-                      fontSize: 12,
-                      fontWeight: active ? 700 : 400,
-                      color: active ? "var(--primary, #a855f7)" : "#64748b",
-                      background: active ? "rgba(124,58,237,0.18)" : "transparent",
-                      textDecoration: "none",
-                      borderRight: l === "en" ? "1px solid rgba(255,255,255,0.1)" : "none",
-                      letterSpacing: "0.04em",
-                    }}
-                  >
-                    {l === "en" ? "🇬🇧 EN" : "🇺🇦 УКР"}
-                  </a>
-                );
-              })}
+        {/* ── Top bar: back nav + locale switcher (sticky) ── */}
+        <div style={{
+          position: "sticky", top: 0, zIndex: 50,
+          background: "rgba(10,11,15,0.82)",
+          backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(255,255,255,0.07)",
+        }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "12px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 10 }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+              <Link href={`/${locale}/blog`} style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                padding: "9px 16px", borderRadius: 999,
+                background: "var(--primary, #a855f7)", color: "#0b0b0f",
+                textDecoration: "none", fontSize: 16, fontWeight: 600,
+              }}>
+                {t.backBlog}
+              </Link>
+              <a href={`/${locale}`} style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                padding: "9px 16px", borderRadius: 999,
+                border: "1px solid rgba(255,255,255,0.16)", color: "#e2e8f0",
+                textDecoration: "none", fontSize: 16, fontWeight: 500,
+              }}>
+                {t.backSite}
+              </a>
             </div>
-          )}
+            {hasOtherLocale && (
+              <div style={{
+                display: "inline-flex",
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: 8, overflow: "hidden",
+              }}>
+                {(["en", "uk"] as const).map(l => {
+                  const active = l === locale;
+                  return (
+                    <a
+                      key={l}
+                      href={`/${l}/blog/${slug}`}
+                      style={{
+                        display: "inline-flex", alignItems: "center",
+                        padding: "8px 14px",
+                        fontSize: 14,
+                        fontWeight: active ? 700 : 400,
+                        color: active ? "var(--primary, #a855f7)" : "#94a3b8",
+                        background: active ? "rgba(124,58,237,0.18)" : "transparent",
+                        textDecoration: "none",
+                        borderRight: l === "en" ? "1px solid rgba(255,255,255,0.1)" : "none",
+                        letterSpacing: "0.04em",
+                      }}
+                    >
+                      {l === "en" ? "🇬🇧 EN" : "🇺🇦 УКР"}
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* ── Hero Image ── */}
@@ -393,7 +417,7 @@ export function ArticleView({ article, headings, locale, slug, related, relatedH
         </div>
 
         {/* ── Layout: Article + TOC ── */}
-        <div style={{
+        <div className="article-layout" style={{
           maxWidth: 1200, margin: "0 auto", padding: "0 24px 80px",
           display: "grid",
           gridTemplateColumns: headings.length > 2 ? "1fr 260px" : "1fr",
@@ -410,7 +434,7 @@ export function ArticleView({ article, headings, locale, slug, related, relatedH
 
           {/* TOC Sidebar */}
           {headings.length > 2 && (
-            <aside style={{
+            <aside className="article-toc" style={{
               position: "sticky", top: 80,
               paddingTop: 36,
             }}>

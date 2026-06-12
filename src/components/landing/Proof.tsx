@@ -55,7 +55,7 @@ export function Proof() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           transition={{ staggerChildren: 0.08 }}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mt-20"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 mt-20"
         >
           {CASES.map((c) => (
             <motion.div
