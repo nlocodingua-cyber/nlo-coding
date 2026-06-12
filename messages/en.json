@@ -773,6 +773,7 @@
     "selectDate": "Select a date",
     "noSlots": "No available slots. Try another day.",
     "next": "Next",
+    "backToSite": "Back to site",
     "form": {
       "name": "Name",
       "namePlaceholder": "What's your name?",

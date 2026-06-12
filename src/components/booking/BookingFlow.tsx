@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Loader2, CheckCircle, ChevronLeft, ChevronRight, Clock, Calendar, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "@/i18n/routing";
 import { toast } from "sonner";
 import { MEETING_TYPES, type MeetingType } from "@/lib/meeting-config";
 
@@ -145,7 +146,16 @@ export function BookingFlow() {
   if (step === "service") {
     return (
       <div className="space-y-6">
-        <StepHeader step={1} total={3} title={t("steps.service")} />
+        <div className="flex items-center gap-3">
+          <Link
+            href="/"
+            aria-label={t("backToSite")}
+            className="p-1.5 rounded-lg hover:bg-white/5 text-[--foreground-muted] hover:text-[--foreground] transition-colors"
+          >
+            <ChevronLeft className="size-4" />
+          </Link>
+          <StepHeader step={1} total={3} title={t("steps.service")} noMargin />
+        </div>
         <div className="grid sm:grid-cols-3 gap-4">
           {MEETING_TYPES.map((mt) => (
             <button
@@ -418,6 +428,15 @@ export function BookingFlow() {
         </a>
       )}
       <div className="text-xs text-[--foreground-muted]">{t("done.email")}</div>
+      <div>
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm text-[--foreground-muted] hover:text-amber-300 transition-colors"
+        >
+          <ChevronLeft className="size-4" />
+          {t("backToSite")}
+        </Link>
+      </div>
     </div>
   );
 }
