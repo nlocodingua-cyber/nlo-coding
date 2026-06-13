@@ -41,6 +41,7 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
       utm_source: new URLSearchParams(window.location.search).get("utm_source"),
       utm_medium: new URLSearchParams(window.location.search).get("utm_medium"),
       utm_campaign: new URLSearchParams(window.location.search).get("utm_campaign"),
+      ref_code: new URLSearchParams(window.location.search).get("ref"),
     };
 
     if (!payload.name || !payload.email || !payload.description) {

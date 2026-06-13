@@ -20,13 +20,13 @@ async function sendTelegram(text: string) {
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { name, email, telegram, service_type, description, budget_range, source_page, utm_source, utm_medium, utm_campaign } = body;
+  const { name, email, telegram, service_type, description, budget_range, source_page, utm_source, utm_medium, utm_campaign, ref_code } = body;
 
   if (!name || !email || !description) {
     return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
-  const payload = { name, email, telegram: telegram || null, service_type: service_type || null, description, budget_range: budget_range || null, source_page, utm_source, utm_medium, utm_campaign };
+  const payload = { name, email, telegram: telegram || null, service_type: service_type || null, description, budget_range: budget_range || null, source_page, utm_source, utm_medium, utm_campaign, ref_code: ref_code || null };
 
   // Save to Supabase
   const { error } = await supabase.from("leads").insert(payload);
@@ -39,11 +39,12 @@ export async function POST(req: NextRequest) {
   const tg = telegram ? ` · TG: @${telegram.replace("@", "")}` : "";
   const budget = budget_range ? ` · Бюджет: ${budget_range}` : "";
   const service = service_type ? ` · Послуга: ${service_type}` : "";
+  const ref = ref_code ? ` · 🤝 Реф: ${ref_code}` : "";
   const msg = [
     `📩 <b>Нова заявка — NLO Coding</b>`,
     ``,
     `<b>${name}</b> (${email}${tg})`,
-    `${service}${budget}`,
+    `${service}${budget}${ref}`,
     ``,
     `<i>${description}</i>`,
     ``,
