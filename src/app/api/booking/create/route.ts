@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 import { createBooking } from "@/lib/google-calendar";
 import { MEETING_TYPES } from "@/lib/meeting-config";
+
+// Service-role client — the bookings ledger is server-only (no public RLS).
+const bookingsDb = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  { db: { schema: "nlocoding" }, auth: { persistSession: false, autoRefreshToken: false } }
+);
 
 const OWNER_EMAIL = process.env.GOOGLE_CALENDAR_ID!;
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? "info@dronewar.win";
@@ -42,7 +50,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { meetLink } = await createBooking({
+    const { meetLink, eventId, startISO, endISO } = await createBooking({
       name,
       email,
       note: note ?? "",
@@ -51,6 +59,27 @@ export async function POST(req: NextRequest) {
       durationMinutes: meetingType.duration,
       meetingTypeId: type,
     });
+
+    // Ledger row so /api/booking/sync can detect a later cancel/reschedule in
+    // Google and notify the client. Best-effort — a DB hiccup must not fail the
+    // booking the client just made.
+    await bookingsDb
+      .from("bookings")
+      .insert({
+        google_event_id: eventId,
+        name,
+        email,
+        meeting_type: type,
+        starts_at: startISO,
+        ends_at: endISO,
+        status: "confirmed",
+        meet_link: meetLink,
+        note: note ?? null,
+        last_synced_at: new Date().toISOString(),
+      })
+      .then(({ error }) => {
+        if (error) console.error("[booking/create] ledger", error.message);
+      });
 
     const dateLabel = new Date(date + "T12:00:00Z").toLocaleDateString("uk-UA", {
       day: "numeric", month: "long", year: "numeric",

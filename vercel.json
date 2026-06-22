@@ -8,5 +8,8 @@
     }
   },
   "installCommand": "npm install --production=false",
-  "buildCommand": "NODE_OPTIONS='--max-old-space-size=7168' next build"
+  "buildCommand": "NODE_OPTIONS='--max-old-space-size=7168' next build",
+  "crons": [
+    { "path": "/api/booking/sync", "schedule": "0 * * * *" }
+  ]
 }

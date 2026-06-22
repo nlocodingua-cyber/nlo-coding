@@ -87,7 +87,7 @@ export async function createBooking({
   name: string; email: string; note: string;
   dateStr: string; timeStr: string;
   durationMinutes: number; meetingTypeId: string;
-}): Promise<{ meetLink: string }> {
+}): Promise<{ meetLink: string; eventId: string | null; startISO: string; endISO: string }> {
   // Naive datetime + timeZone → Google interprets as Lisbon time. No manual conversion needed.
   const startDT = `${dateStr}T${timeStr}:00`;
   const [h, m] = timeStr.split(":").map(Number);
@@ -95,10 +95,14 @@ export async function createBooking({
   const endM = (m + durationMinutes) % 60;
   const endDT = `${dateStr}T${pad(endH)}:${pad(endM)}:00`;
 
+  // Absolute UTC instants for the bookings ledger (sync-back compares against these).
+  const startUTC = lisbonToUTC(dateStr, h, m);
+  const endUTC = new Date(startUTC.getTime() + durationMinutes * 60000);
+
   const zoomLine = `Zoom: ${ZOOM_URL}`;
   const description = [note, zoomLine].filter(Boolean).join("\n\n");
 
-  await calendar.events.insert({
+  const { data } = await calendar.events.insert({
     calendarId: CALENDAR_ID,
     sendUpdates: "all",
     requestBody: {
@@ -110,5 +114,34 @@ export async function createBooking({
     },
   });
 
-  return { meetLink: ZOOM_URL };
+  return {
+    meetLink: ZOOM_URL,
+    eventId: data.id ?? null,
+    startISO: startUTC.toISOString(),
+    endISO: endUTC.toISOString(),
+  };
+}
+
+/**
+ * Read a single event for sync-back. Returns null when the event is gone
+ * (404/410) — i.e. the owner deleted it in Google. `status === "cancelled"`
+ * also signals a cancellation.
+ */
+export async function getEvent(
+  eventId: string
+): Promise<{ status: string; startISO: string | null; endISO: string | null } | null> {
+  try {
+    const { data } = await calendar.events.get({ calendarId: CALENDAR_ID, eventId });
+    return {
+      status: data.status ?? "confirmed",
+      startISO: data.start?.dateTime ?? data.start?.date ?? null,
+      endISO: data.end?.dateTime ?? data.end?.date ?? null,
+    };
+  } catch (e: unknown) {
+    const code =
+      (e as { code?: number })?.code ??
+      (e as { response?: { status?: number } })?.response?.status;
+    if (code === 404 || code === 410) return null;
+    throw e;
+  }
 }
