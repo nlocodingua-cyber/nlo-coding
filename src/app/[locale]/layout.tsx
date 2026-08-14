@@ -1,3 +1,4 @@
+import { KeyboardShortcuts } from "../../lib/keys/KeyboardShortcuts";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -77,6 +78,9 @@ export default async function LocaleLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
+        {/* Cmd+Z / Cmd+Shift+Z / Ctrl+Y — крок історії; Cmd+C / Cmd+V — об'єкти.
+            Переносний модуль lib/keys. Поля вводу не чіпає. */}
+        <KeyboardShortcuts />
       </body>
     </html>
   );
