@@ -81,6 +81,15 @@ export default async function LocaleLayout({
         {/* Cmd+Z / Cmd+Shift+Z / Ctrl+Y — крок історії; Cmd+C / Cmd+V — об'єкти.
             Переносний модуль lib/keys. Поля вводу не чіпає. */}
         <KeyboardShortcuts />
+        {/* Лічильник Cloudflare Web Analytics — без cookie, без згоди на трекінг.
+            Домен віддається з Vercel/Railway повз проксі Cloudflare, тому
+            Cloudflare сам скрипт не вставить: подаємо його звідси. */}
+        <Script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "db3347d1c38e44889c8f031db6d331ae"}'
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
