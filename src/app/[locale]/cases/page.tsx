@@ -11,6 +11,7 @@ import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { pageAlternates } from "@/lib/seo/blog";
 
 export async function generateMetadata({
   params,
@@ -19,7 +20,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "cases.meta" });
-  return { title: t("title"), description: t("description") };
+  return {
+    alternates: pageAlternates(locale, "/cases"), title: t("title"), description: t("description") };
 }
 
 type CaseKey = "support" | "sales" | "orders" | "dashboard" | "research";

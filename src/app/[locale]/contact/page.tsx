@@ -7,6 +7,7 @@ import { LeadBlock } from "@/components/shared/LeadBlock";
 import { LeadForm } from "@/components/shared/LeadForm";
 import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { pageAlternates } from "@/lib/seo/blog";
 
 export async function generateMetadata({
   params,
@@ -15,7 +16,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact.meta" });
-  return { title: t("title"), description: t("description") };
+  return {
+    alternates: pageAlternates(locale, "/contact"), title: t("title"), description: t("description") };
 }
 
 export default async function ContactPage({

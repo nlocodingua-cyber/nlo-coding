@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Nav } from "@/components/shared/Nav";
 import { BookingFlow } from "@/components/booking/BookingFlow";
+import { pageAlternates } from "@/lib/seo/blog";
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations("booking");
   return {
+    alternates: pageAlternates(locale, "/booking"),
     title: t("meta.title"),
     description: t("meta.description"),
   };

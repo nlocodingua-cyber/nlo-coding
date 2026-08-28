@@ -3,6 +3,7 @@ import { Nav } from "@/components/shared/Nav";
 import { Footer } from "@/components/shared/Footer";
 import { TargetPage } from "@/components/target/TargetPage";
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo/blog";
 
 export async function generateMetadata({
   params,
@@ -12,6 +13,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "aiAgents.meta" });
   return {
+    alternates: pageAlternates(locale, "/ai-agents"),
     title: t("title"),
     description: t("description"),
   };

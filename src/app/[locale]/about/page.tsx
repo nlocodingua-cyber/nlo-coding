@@ -10,6 +10,7 @@ import { BRAND_EXORCIST_URL } from "@/lib/constants";
 import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
 import { useTranslations } from "next-intl";
+import { pageAlternates } from "@/lib/seo/blog";
 
 export async function generateMetadata({
   params,
@@ -18,7 +19,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about.meta" });
-  return { title: t("title"), description: t("description") };
+  return {
+    alternates: pageAlternates(locale, "/about"), title: t("title"), description: t("description") };
 }
 
 export default async function AboutPage({

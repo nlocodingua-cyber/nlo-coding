@@ -11,6 +11,12 @@ import { Check, ArrowLeft, ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
+import type { Metadata } from "next";
+
+/** Службова сторінка — у пошуку їй робити нічого. */
+export const metadata: Metadata = { robots: { index: false, follow: true } };
+
+
 const colorMap = {
   cyan: "text-[var(--chart-1)]",
   purple: "text-[var(--chart-2)]",
