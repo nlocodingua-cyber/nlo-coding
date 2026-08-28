@@ -59,7 +59,10 @@ async function fetchArticles(): Promise<Row[]> {
 const alternatesFor = (path: string, locales: readonly string[]) => ({
   languages: {
     ...Object.fromEntries(locales.map((l) => [l, `${BASE_URL}/${l}${path}`])),
-    "x-default": `${BASE_URL}/uk${path}`,
+    // x-default = мова оригіналу: статті пишуться англійською, і саме її
+    // має бачити читач, чия мова не збіглася з жодною. Те саме значення
+    // стоїть на самих сторінках — суперечливий hreflang Google ігнорує.
+    "x-default": `${BASE_URL}/en${path}`,
   },
 });
 

@@ -13,6 +13,20 @@ import { FounderBlock } from "@/components/landing/FounderBlock";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 
+import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/seo/blog";
+
+/** Головна сама називає свою адресу — layout цього зробити не може. */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return { alternates: pageAlternates(locale) };
+}
+
+
 export default async function HomePage({
   params,
 }: {

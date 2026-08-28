@@ -5,6 +5,12 @@ import { marked } from "marked";
 import { ArticleView } from "./ArticleView";
 import type { RelatedItem } from "@/components/blog/RelatedArticles";
 import type { Preview } from "@/components/blog/LinkPreview";
+import {
+  articleJsonLd,
+  articleMetadata,
+  displayTitle,
+  type SeoRow,
+} from "@/lib/seo/blog";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -22,16 +28,38 @@ type Row = {
   translations: Record<string, Tr> | null;
 };
 
+/** Легкий рядок для «читайте також» і hover-мініатюр: без тіла статті. */
+type ListRow = {
+  slug: string;
+  title: string;
+  meta_description: string | null;
+  hero_image_url: string | null;
+  keywords: string[] | null;
+  published_at: string | null;
+  tr_title: string | null;
+  tr_desc: string | null;
+};
+
 const WEBSITE_ID = process.env.NEXT_PUBLIC_BLOG_WEBSITE_ID!;
+
+/** Колонки, потрібні для метадати й structured data. */
+const SEO_COLUMNS =
+  "slug, title, meta_title, meta_description, keywords, hero_image_url, hero_image_alt, published_at, updated_at, word_count, translations";
+
+/**
+ * Колонки для списку сусідніх статей.
+ *
+ * Тіло статті сюди не входить навмисно: у translations лежить повний текст
+ * усіма мовами, і вибірка «всі статті разом із translations» роздувала
+ * сторінку до мегабайта. Потрібні лише заголовок і опис потрібною мовою.
+ */
+const listColumns = (locale: string) =>
+  "slug, title, meta_description, hero_image_url, keywords, published_at, " +
+  `tr_title:translations->${locale}->>title, ` +
+  `tr_desc:translations->${locale}->>meta_description`;
 
 function trOf(row: Row, locale: string): Tr | null {
   return locale !== "en" ? row.translations?.[locale] ?? null : null;
-}
-function locTitle(row: Row, locale: string): string {
-  return trOf(row, locale)?.title || row.title;
-}
-function locMeta(row: Row, locale: string): string | null {
-  return trOf(row, locale)?.meta_description || row.meta_description;
 }
 
 const STOP = new Set([
@@ -51,23 +79,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data } = await supabase
     .schema("gc")
     .from("website_articles")
-    .select("title, meta_description, hero_image_url, translations")
+    .select(SEO_COLUMNS)
     .eq("slug", slug)
     .eq("website_id", WEBSITE_ID)
-    .single();
+    .eq("status", "published")
+    .maybeSingle();
   if (!data) return {};
-  const row = data as unknown as Row;
-  const title = locTitle(row, locale);
-  const description = locMeta(row, locale) ?? undefined;
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      images: row.hero_image_url ? [row.hero_image_url] : [],
-    },
-  };
+  return articleMetadata(data as unknown as SeoRow, locale);
 }
 
 export default async function ArticlePage({ params }: Props) {
@@ -75,23 +93,34 @@ export default async function ArticlePage({ params }: Props) {
   const supabase = await createClient();
   if (!supabase) notFound();
 
-  // Один запит — усі статті сайту (для самої статті, related і preview-мапи).
-  const { data: rowsData } = await supabase
-    .schema("gc")
-    .from("website_articles")
-    .select(
-      "slug, title, content_md, meta_description, hero_image_url, keywords, article_type, published_at, word_count, translations"
-    )
-    .eq("website_id", WEBSITE_ID)
-    .eq("status", "published");
+  // Сама стаття — з текстом; сусідні — окремим легким запитом.
+  const [{ data: articleData }, { data: listData }] = await Promise.all([
+    supabase
+      .schema("gc")
+      .from("website_articles")
+      .select(
+        "slug, title, meta_title, meta_description, keywords, hero_image_url, hero_image_alt, article_type, published_at, updated_at, word_count, content_md, translations"
+      )
+      .eq("website_id", WEBSITE_ID)
+      .eq("status", "published")
+      .eq("slug", slug)
+      .maybeSingle(),
+    supabase
+      .schema("gc")
+      .from("website_articles")
+      .select(listColumns(locale))
+      .eq("website_id", WEBSITE_ID)
+      .eq("status", "published"),
+  ]);
 
-  const rows = (rowsData ?? []) as unknown as Row[];
-  const article = rows.find((r) => r.slug === slug);
-  if (!article) notFound();
+  if (!articleData) notFound();
+  const article = articleData as unknown as Row;
+  const seoRow = articleData as unknown as SeoRow;
+  const rows = (listData ?? []) as unknown as ListRow[];
 
   // ── Локалізований контент ──
   const tr = trOf(article, locale);
-  const displayTitle = tr?.title || article.title;
+  const shownTitle = displayTitle(seoRow, locale);
   const displayContent = tr?.content_md || article.content_md || "";
 
   const cleanContent = displayContent
@@ -149,18 +178,18 @@ export default async function ArticlePage({ params }: Props) {
     .slice(0, 3)
     .map(({ r }) => ({
       slug: r.slug,
-      title: locTitle(r, locale),
+      title: r.tr_title || r.title,
       heroImageUrl: r.hero_image_url,
-      metaDescription: locMeta(r, locale),
+      metaDescription: r.tr_desc || r.meta_description,
     }));
 
   // ── Preview-мапа для hover-мініатюр inline-лінків ──
   const previewMap: Record<string, Preview> = {};
   for (const r of rows) {
     previewMap[r.slug] = {
-      title: locTitle(r, locale),
+      title: r.tr_title || r.title,
       heroImageUrl: r.hero_image_url,
-      metaDescription: locMeta(r, locale),
+      metaDescription: r.tr_desc || r.meta_description,
     };
   }
 
@@ -170,30 +199,42 @@ export default async function ArticlePage({ params }: Props) {
     .from("websites")
     .select("persona_name")
     .eq("id", WEBSITE_ID)
-    .single();
+    .maybeSingle();
   const persona = (site?.persona_name as string) || "Олексій Ніколайчук";
   const byline = locale === "uk" ? `Експертний гайд від ${persona}` : `Expert guide by ${persona}`;
   const relatedHeading = locale === "uk" ? "Читайте також" : "Related articles";
 
+  // Structured data: BlogPosting + хлібні крихти + FAQ, зібраний із H2-питань.
+  const jsonLd = articleJsonLd(seoRow, locale, { html: htmlWithIds });
+
   return (
-    <ArticleView
-      article={{
-        title: displayTitle,
-        htmlContent: htmlLinked,
-        publishedAt: article.published_at,
-        wordCount: article.word_count,
-        heroImageUrl: article.hero_image_url,
-        isPillar,
-        readingTime,
-        hasOtherLocale,
-      }}
-      headings={headings}
-      locale={locale}
-      slug={slug}
-      related={related}
-      relatedHeading={relatedHeading}
-      previewMap={previewMap}
-      byline={byline}
-    />
+    <>
+      {jsonLd.map((ld, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+        />
+      ))}
+      <ArticleView
+        article={{
+          title: shownTitle,
+          htmlContent: htmlLinked,
+          publishedAt: article.published_at,
+          wordCount: article.word_count,
+          heroImageUrl: article.hero_image_url,
+          isPillar,
+          readingTime,
+          hasOtherLocale,
+        }}
+        headings={headings}
+        locale={locale}
+        slug={slug}
+        related={related}
+        relatedHeading={relatedHeading}
+        previewMap={previewMap}
+        byline={byline}
+      />
+    </>
   );
 }
