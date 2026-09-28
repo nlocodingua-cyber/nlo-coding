@@ -43,3 +43,8 @@ next-env.d.ts
 # IDE
 .vscode
 .idea
+
+# проєкт живе на npm — pnpm-lock тут лишається від разових запусків
+# і, потрапивши в репозиторій, перемкне Vercel на інший пакетний менеджер
+pnpm-lock.yaml
+pnpm-workspace.yaml
