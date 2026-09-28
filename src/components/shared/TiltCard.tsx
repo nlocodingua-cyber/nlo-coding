@@ -34,6 +34,13 @@ export function TiltCard({ children, className, maxTilt = 8, glare = true }: Til
   const glareX = useTransform(x, [-0.5, 0.5], ["0%", "100%"]);
   const glareY = useTransform(y, [-0.5, 0.5], ["0%", "100%"]);
   const glareOpacity = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 });
+  // Must stay at the top level: calling useTransform inside the `glare &&` branch
+  // below made the hook conditional, so toggling `glare` changed the hook order.
+  const glareBackground = useTransform(
+    [glareX, glareY] as never,
+    ([gx, gy]: [string, string]) =>
+      `radial-gradient(600px circle at ${gx} ${gy}, rgba(255,255,255,0.3), transparent 40%)`
+  );
 
   function handleMove(e: MouseEvent<HTMLDivElement>) {
     const el = ref.current;
@@ -73,11 +80,7 @@ export function TiltCard({ children, className, maxTilt = 8, glare = true }: Til
             className="absolute inset-0 rounded-[inherit] pointer-events-none"
             style={{
               opacity: glareOpacity,
-              background: useTransform(
-                [glareX, glareY] as never,
-                ([gx, gy]: [string, string]) =>
-                  `radial-gradient(600px circle at ${gx} ${gy}, rgba(255,255,255,0.3), transparent 40%)`
-              ),
+              background: glareBackground,
             }}
           />
         )}
