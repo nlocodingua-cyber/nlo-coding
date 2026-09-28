@@ -53,7 +53,12 @@ export function KeyboardShortcuts(крюки: Крюки) {
   const зайнято = useRef(false);
   const таймер = useRef<ReturnType<typeof setTimeout> | null>(null);
   const свіжі = useRef(крюки);
-  свіжі.current = крюки;
+  // Оновлюємо після малювання, а не під час нього: запис у ref прямо в тілі
+  // компонента робить малювання нечистим. Читають цей ref лише обробники
+  // клавіш, які працюють уже після монтування, тому значення завжди свіже.
+  useEffect(() => {
+    свіжі.current = крюки;
+  });
 
   const показати = useCallback((текст: string, добре = true) => {
     setЗвіт({ текст, добре });
