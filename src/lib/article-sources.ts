@@ -14,6 +14,26 @@ const ПІДПИС: Record<string, string> = {
   ru: "Источники",
 };
 
+/**
+ * Прибирає рекламні хвости з посилання.
+ *
+ * Пошук, яким збирались джерела, дописує `?utm_source=openai` — і це висить
+ * на 368 з 370 статей. Читачеві воно показує, звідки насправді взялось
+ * «джерело», а в списку просто засмічує шлях. На сторінку, куди веде
+ * посилання, ці параметри не впливають, тому знімаємо їх і з адреси теж.
+ */
+function почистити(u: string): string {
+  try {
+    const p = new URL(u);
+    for (const k of [...p.searchParams.keys()]) {
+      if (/^(utm_|fbclid$|gclid$|mc_[ce]id$|ref$|source$)/i.test(k)) p.searchParams.delete(k);
+    }
+    return p.toString().replace(/\?$/, "");
+  } catch {
+    return u;
+  }
+}
+
 function esc(v: string): string {
   return v
     .replace(/&/g, "&amp;")
@@ -55,7 +75,8 @@ export function розміткаДжерел(urls: string[] | null | undefined, 
   if (список.length === 0) return "";
   const підпис = ПІДПИС[locale] ?? ПІДПИС.en;
   const пункти = список
-    .map((u, i) => {
+    .map((сире, i) => {
+      const u = почистити(сире);
       let хост = u;
       let шлях = "";
       try {
