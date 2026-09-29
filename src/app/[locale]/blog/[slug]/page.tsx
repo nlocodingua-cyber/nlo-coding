@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { marked } from "marked";
 import { ArticleView } from "./ArticleView";
+import { розміткаДжерел, виноскиВПосилання, живіДжерела } from "@/lib/article-sources";
 import type { RelatedItem } from "@/components/blog/RelatedArticles";
 import type { Preview } from "@/components/blog/LinkPreview";
 import {
@@ -19,6 +20,7 @@ type Row = {
   slug: string;
   title: string;
   content_md: string | null;
+  source_urls: string[] | null;
   meta_description: string | null;
   hero_image_url: string | null;
   keywords: string[] | null;
@@ -99,7 +101,7 @@ export default async function ArticlePage({ params }: Props) {
       .schema("gc")
       .from("website_articles")
       .select(
-        "slug, title, meta_title, meta_description, keywords, hero_image_url, hero_image_alt, article_type, published_at, updated_at, word_count, content_md, translations"
+        "slug, title, meta_title, meta_description, keywords, hero_image_url, hero_image_alt, article_type, published_at, updated_at, word_count, content_md, source_urls, translations"
       )
       .eq("website_id", WEBSITE_ID)
       .eq("status", "published")
@@ -158,6 +160,13 @@ export default async function ArticlePage({ params }: Props) {
   const htmlLinked = htmlWithIds
     .replace(/<a (href="\/[^"]*\/blog\/[^"]+")/g, '<a class="internal-link" $1')
     .replace(/<a (href="https?:\/\/[^"]+")/g, '<a class="external-link" target="_blank" rel="noopener noreferrer" $1');
+
+  // Виноски [1]..[N] у тексті рахують source_urls. Без списку джерел на
+  // сторінці вони ведуть у нікуди — вигляд роботи з джерелами, який нічим
+  // не перевіряється. Тому список показуємо, а номери робимо посиланнями.
+  const джерела = живіДжерела(article.source_urls);
+  const htmlWithSources =
+    виноскиВПосилання(htmlLinked, джерела.length) + розміткаДжерел(article.source_urls, locale);
 
   const readingTime = Math.max(1, Math.ceil((article.word_count ?? 0) / 200));
   const isPillar = article.article_type === "pillar";
@@ -219,7 +228,7 @@ export default async function ArticlePage({ params }: Props) {
       <ArticleView
         article={{
           title: shownTitle,
-          htmlContent: htmlLinked,
+          htmlContent: htmlWithSources,
           publishedAt: article.published_at,
           wordCount: article.word_count,
           heroImageUrl: article.hero_image_url,

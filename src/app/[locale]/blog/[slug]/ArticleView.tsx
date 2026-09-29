@@ -113,6 +113,16 @@ const ARTICLE_STYLES = `
   .article-body ul, .article-body ol { margin: 1rem 0 1.5rem 1.5rem; }
   .article-body li { margin-bottom: 0.5rem; }
   .article-body strong { color: #f1f5f9; font-weight: 600; }
+  /* Джерела статті. Виноски [N] у тексті ведуть сюди — див. src/lib/article-sources.ts */
+  .footnote-ref { font-size: 0.72em; line-height: 0; vertical-align: super; }
+  .footnote-ref a { text-decoration: none; padding: 0 1px; }
+  .article-sources { margin: 3rem 0 0; padding-top: 1.5rem; border-top: 1px solid rgba(148,163,184,0.25); }
+  .article-sources h2 { font-size: 1.05rem; margin: 0 0 0.85rem; padding: 0; border: 0; }
+  .article-sources ol { margin: 0 0 0 1.4rem; }
+  .article-sources li { margin-bottom: 0.45rem; font-size: 0.9rem; line-height: 1.5; word-break: break-word; }
+  .article-sources li:target { outline: 2px solid rgba(148,163,184,0.4); outline-offset: 3px; border-radius: 3px; }
+  .source-path { opacity: 0.6; margin-left: 0.4rem; }
+
   .article-body em { color: #94a3b8; }
   .article-body code {
     background: rgba(255,255,255,0.06);
