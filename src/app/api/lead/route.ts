@@ -1,9 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
+// Таблиця leads живе у схемі nlocoding, а без явної схеми клієнт пише в
+// public.leads — якої не існує. Тому кожна заявка з форми закінчувалась
+// «DB error» і губилась: у таблиці нуль рядків за весь час не тому, що ніхто
+// не писав, а тому, що жодна не долетіла. Маршрути бронювання схему задають —
+// цей був єдиним без неї.
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  { db: { schema: "nlocoding" }, auth: { persistSession: false, autoRefreshToken: false } }
 );
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
