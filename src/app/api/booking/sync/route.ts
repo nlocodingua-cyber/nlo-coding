@@ -12,6 +12,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { getEvent } from "@/lib/google-calendar";
+import { escapeHtml } from "@/lib/telegram";
 
 const db = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -108,11 +109,11 @@ export async function GET(request: NextRequest) {
       await email(
         b.email ?? "",
         "Зустріч скасовано — NLO Coding",
-        `<p>Привіт${b.name ? `, ${b.name}` : ""}!</p>
+        `<p>Привіт${b.name ? `, ${escapeHtml(b.name)}` : ""}!</p>
          <p>На жаль, зустріч <b>${fmt(b.starts_at)}</b> (Лісабон) скасовано.</p>
          <p>Щоб обрати інший час — заброньуй наново на сайті${OWNER_EMAIL ? ` або напиши на <a href="mailto:${OWNER_EMAIL}">${OWNER_EMAIL}</a>` : ""}.</p>`
       );
-      await tg(`❌ <b>Бронювання скасовано</b>\n${b.name ?? "—"} (${b.email ?? "—"})\n📆 ${fmt(b.starts_at)}`);
+      await tg(`❌ <b>Бронювання скасовано</b>\n${escapeHtml(b.name ?? "—")} (${escapeHtml(b.email ?? "—")})\n📆 ${fmt(b.starts_at)}`);
       continue;
     }
 
@@ -133,7 +134,7 @@ export async function GET(request: NextRequest) {
         rescheduled++;
         // Owner-only ping — no client email on reschedule (avoids false-positive blasts).
         await tg(
-          `🔁 <b>Бронювання перенесено в Google</b>\n${b.name ?? "—"} (${b.email ?? "—"})\n${fmt(b.starts_at)} → <b>${fmt(ev.startISO)}</b>\nПеревір і за потреби напиши клієнту.`
+          `🔁 <b>Бронювання перенесено в Google</b>\n${escapeHtml(b.name ?? "—")} (${escapeHtml(b.email ?? "—")})\n${fmt(b.starts_at)} → <b>${fmt(ev.startISO)}</b>\nПеревір і за потреби напиши клієнту.`
         );
         continue;
       }

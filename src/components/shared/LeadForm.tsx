@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,13 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
   const t = useTranslations("leadForm");
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  // Мітка показу форми. Сервер відкидає заявки, надіслані швидше за три
+  // секунди після показу, і ті, де цієї мітки немає взагалі (боти беруть
+  // імена полів з HTML і шлють JSON напряму).
+  const startedAt = useRef(0);
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,6 +49,8 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
       utm_medium: new URLSearchParams(window.location.search).get("utm_medium"),
       utm_campaign: new URLSearchParams(window.location.search).get("utm_campaign"),
       ref_code: new URLSearchParams(window.location.search).get("ref"),
+      website: String(form.get("website") || ""),
+      elapsed_ms: startedAt.current ? Date.now() - startedAt.current : 0,
     };
 
     if (!payload.name || !payload.email || !payload.description) {
@@ -66,7 +75,7 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
   }
 
   return (
-    <form onSubmit={handleSubmit} className="glass-elevated p-6 sm:p-8 space-y-5">
+    <form onSubmit={handleSubmit} className="relative glass-elevated p-6 sm:p-8 space-y-5">
       <div>
         <h3 className="font-display text-xl font-semibold mb-1">{t("title")}</h3>
         <p className="text-sm text-foreground/60">{t("subtitle")}</p>
@@ -157,6 +166,16 @@ export function LeadForm({ defaultService, sourcePage = "contact" }: LeadFormPro
           </>
         )}
       </Button>
+
+      {/* Пастка для ботів: людина цього поля не бачить (винесене за екран,
+          поза табом, без автозаповнення), боти заповнюють усі поля підряд.
+          Сервер мовчки відкидає заявку, де воно непорожнє. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-px w-px overflow-hidden">
+        <label>
+          Website
+          <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
 
       <style jsx>{`
         .form-input {

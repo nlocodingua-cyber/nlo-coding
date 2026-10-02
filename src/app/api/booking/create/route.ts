@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { createBooking } from "@/lib/google-calendar";
 import { MEETING_TYPES } from "@/lib/meeting-config";
+import { escapeHtml } from "@/lib/telegram";
 
 // Service-role client — the bookings ledger is server-only (no public RLS).
 const bookingsDb = createClient(
@@ -90,15 +91,15 @@ export async function POST(req: NextRequest) {
       sendTelegram([
         `📅 <b>Нове бронювання — NLO Coding</b>`,
         ``,
-        `<b>${name}</b> (${email})`,
+        `<b>${escapeHtml(name)}</b> (${escapeHtml(email)})`,
         `Тип: ${type} · ${meetingType.duration} хв`,
         `📆 ${dateLabel}, ${time} (Lisbon)`,
-        note ? `\n💬 ${note}` : "",
+        note ? `\n💬 ${escapeHtml(note)}` : "",
         meetLink ? `\n🔗 <a href="${meetLink}">Zoom</a>` : "",
       ].filter(Boolean).join("\n")),
 
       sendEmail(email, `Підтвердження зустрічі — NLO Coding`, `
-      <p>Привіт, ${name}!</p>
+      <p>Привіт, ${escapeHtml(name)}!</p>
       <p>Твою зустріч заброньовано:</p>
       <ul>
         <li><b>Дата:</b> ${dateLabel}</li>
